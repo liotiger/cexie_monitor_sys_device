@@ -1,0 +1,81 @@
+{
+  "root": "cexie-mobile-app-design",
+  "children": [
+    {
+      "name": "colors_and_type.css",
+      "type": "file",
+      "role": "design-tokens"
+    },
+    {
+      "name": "partials",
+      "type": "directory",
+      "children": [
+        {
+          "name": "project-shell.html",
+          "type": "file",
+          "role": "shared-shell-reference"
+        }
+      ]
+    },
+    {
+      "name": "pages",
+      "type": "directory",
+      "children": [
+        {
+          "name": "login.html",
+          "title": "登录",
+          "businessScenario": "auth-entry",
+          "tabPage": false
+        },
+        {
+          "name": "dashboard.html",
+          "title": "首页",
+          "businessScenario": "overview-hub",
+          "tabPage": true
+        },
+        {
+          "name": "projects.html",
+          "title": "工程",
+          "businessScenario": "project-browse",
+          "tabPage": true
+        },
+        {
+          "name": "project-detail.html",
+          "title": "工程详情",
+          "businessScenario": "project-detail",
+          "tabPage": false
+        },
+        {
+          "name": "hole-monitor.html",
+          "title": "测孔监测",
+          "businessScenario": "hole-monitor",
+          "tabPage": false
+        },
+        {
+          "name": "trend-analysis.html",
+          "title": "趋势分析",
+          "businessScenario": "trend-analysis",
+          "tabPage": true,
+          "chartsRequired": true
+        },
+        {
+          "name": "reports.html",
+          "title": "报表中心",
+          "businessScenario": "report-center",
+          "tabPage": true
+        },
+        {
+          "name": "profile.html",
+          "title": "我的",
+          "businessScenario": "profile",
+          "tabPage": true
+        }
+      ]
+    },
+    {
+      "name": "orchestration-summary.json",
+      "type": "file",
+      "role": "project-summary"
+    }
+  ]
+}

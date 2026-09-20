@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <style id="theme-vars">
+:root {
+  --cexie-font-sans: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --cexie-font-mono: "SFMono-Regular", "JetBrains Mono", Consolas, monospace;
+
+  --cexie-background: #f3f6fa;
+  --cexie-foreground: #1a2430;
+  --cexie-muted: #eef3f8;
+  --cexie-muted-foreground: #667589;
+  --cexie-card: #ffffff;
+  --cexie-card-foreground: #1a2430;
+  --cexie-border: #d6e0ea;
+  --cexie-divider: #e7edf3;
+
+  --cexie-primary: #2f5e8a;
+  --cexie-primary-strong: #244767;
+  --cexie-primary-soft: #dce8f3;
+  --cexie-primary-surface: #edf4fa;
+  --cexie-primary-foreground: #ffffff;
+
+  --cexie-success: #2f7a61;
+  --cexie-success-surface: #e7f4ee;
+  --cexie-warning: #a46c25;
+  --cexie-warning-surface: #fbf2e5;
+  --cexie-error: #b25454;
+  --cexie-error-surface: #faecec;
+  --cexie-info: #406f9a;
+  --cexie-info-surface: #eaf1f8;
+
+  --cexie-radius-xs: 6px;
+  --cexie-radius-sm: 8px;
+  --cexie-radius-md: 12px;
+  --cexie-radius-lg: 16px;
+
+  --cexie-shadow-1: 0 4px 12px rgba(20, 36, 54, 0.04);
+  --cexie-shadow-2: 0 10px 24px rgba(20, 36, 54, 0.05);
+
+  --cexie-spacing-1: 4px;
+  --cexie-spacing-2: 8px;
+  --cexie-spacing-3: 12px;
+  --cexie-spacing-4: 16px;
+  --cexie-spacing-5: 20px;
+  --cexie-spacing-6: 24px;
+}
+
+.dark {
+  --cexie-background: #111922;
+  --cexie-foreground: #e7edf4;
+  --cexie-muted: #18232f;
+  --cexie-muted-foreground: #93a2b4;
+  --cexie-card: #16212c;
+  --cexie-card-foreground: #e7edf4;
+  --cexie-border: #273747;
+  --cexie-divider: #223241;
+
+  --cexie-primary: #5f88b1;
+  --cexie-primary-strong: #7a9fc3;
+  --cexie-primary-soft: #213549;
+  --cexie-primary-surface: #182837;
+  --cexie-primary-foreground: #f8fbff;
+
+  --cexie-success: #5ca58c;
+  --cexie-success-surface: #173126;
+  --cexie-warning: #cea15e;
+  --cexie-warning-surface: #392c18;
+  --cexie-error: #d68888;
+  --cexie-error-surface: #351f1f;
+  --cexie-info: #7aa8cf;
+  --cexie-info-surface: #1b2d3f;
+}
+
+body {
+  font-family: var(--cexie-font-sans);
+  color: var(--cexie-foreground);
+  background: var(--cexie-background);
+}
+
+.cexie-display {
+  font-family: var(--cexie-font-sans);
+  font-size: clamp(28px, 7vw, 34px);
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.cexie-h1 {
+  font-family: var(--cexie-font-sans);
+  font-size: 24px;
+  line-height: 1.24;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.cexie-h2 {
+  font-family: var(--cexie-font-sans);
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.cexie-h3 {
+  font-family: var(--cexie-font-sans);
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.cexie-body {
+  font-family: var(--cexie-font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.cexie-caption {
+  font-family: var(--cexie-font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.cexie-metric {
+  font-family: var(--cexie-font-mono);
+  font-size: clamp(22px, 5.8vw, 28px);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--cexie-background);
+    --color-foreground: var(--cexie-foreground);
+    --color-card: var(--cexie-card);
+    --color-card-foreground: var(--cexie-card-foreground);
+    --color-primary: var(--cexie-primary);
+    --color-primary-foreground: var(--cexie-primary-foreground);
+    --color-muted: var(--cexie-muted);
+    --color-muted-foreground: var(--cexie-muted-foreground);
+    --color-border: var(--cexie-border);
+  }
+  @layer base {
+    body { background: var(--cexie-background); color: var(--cexie-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen bg-[var(--cexie-background)] text-[var(--cexie-foreground)]">
+  <main class="relative mx-auto flex min-h-screen w-full max-w-md flex-col overflow-hidden px-5 py-6 sm:max-w-lg">
+    <div class="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-[var(--cexie-primary-soft)] opacity-70 blur-3xl"></div>
+    <div class="pointer-events-none absolute -left-24 top-48 h-56 w-56 rounded-full bg-white opacity-80 blur-3xl"></div>
+
+    <header class="relative pt-6">
+      <div class="flex items-start gap-4">
+        <div class="flex h-14 w-14 shrink-0 items-center justify-center rounded-[var(--cexie-radius-md)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] shadow-[var(--cexie-shadow-1)]">
+          <div class="flex h-10 w-10 items-center justify-center rounded-[var(--cexie-radius-sm)] bg-[var(--cexie-primary)] text-[var(--cexie-primary-foreground)]">
+            <i data-lucide="activity" class="h-5 w-5"></i>
+          </div>
+        </div>
+        <div class="min-w-0 pt-0.5">
+          <p class="text-[12px] font-semibold tracking-[0.18em] text-[var(--cexie-primary)]">CEXIE FIELD DEBUG</p>
+          <h1 class="cexie-h1 mt-2 leading-tight">测斜监测现场调试版</h1>
+          <p class="mt-2 text-[13px] leading-6 text-[var(--cexie-muted-foreground)]">现场工程师设备联调入口，支持弱网状态下稳定接入。</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="relative mt-10 rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-5 shadow-[var(--cexie-shadow-2)]">
+      <div class="mb-5 flex items-center justify-between gap-3">
+        <div>
+          <h2 class="cexie-h2">账号登录</h2>
+          <p class="mt-1 text-[12px] text-[var(--cexie-muted-foreground)]">仅授权工程师使用</p>
+        </div>
+        <span class="inline-flex h-8 items-center rounded-[var(--cexie-radius-xs)] bg-[var(--cexie-primary-surface)] px-3 text-[12px] font-semibold text-[var(--cexie-primary)]">安全接入</span>
+      </div>
+
+      <form class="space-y-4">
+        <label class="block">
+          <span class="mb-2 block text-[13px] font-semibold text-[var(--cexie-foreground)]">账号</span>
+          <div class="flex h-12 items-center rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-muted)] px-3 focus-within:border-[var(--cexie-primary)] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(47,94,138,0.10)]">
+            <i data-lucide="user-round" class="mr-2.5 h-4 w-4 shrink-0 text-[var(--cexie-muted-foreground)]"></i>
+            <input type="text" name="account" autocomplete="username" placeholder="请输入工程师账号" class="h-full min-w-0 flex-1 bg-transparent text-[14px] font-medium outline-none placeholder:text-[var(--cexie-muted-foreground)]">
+          </div>
+        </label>
+
+        <label class="block">
+          <span class="mb-2 block text-[13px] font-semibold text-[var(--cexie-foreground)]">密码</span>
+          <div class="flex h-12 items-center rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-muted)] px-3 focus-within:border-[var(--cexie-primary)] focus-within:bg-white focus-within:shadow-[0_0_0_3px_rgba(47,94,138,0.10)]">
+            <i data-lucide="lock-keyhole" class="mr-2.5 h-4 w-4 shrink-0 text-[var(--cexie-muted-foreground)]"></i>
+            <input type="password" name="password" autocomplete="current-password" placeholder="请输入登录密码" class="h-full min-w-0 flex-1 bg-transparent text-[14px] font-medium outline-none placeholder:text-[var(--cexie-muted-foreground)]">
+            <button type="button" class="ml-2 inline-flex h-8 w-8 items-center justify-center rounded-[var(--cexie-radius-xs)] text-[var(--cexie-muted-foreground)]" aria-label="显示密码">
+              <i data-lucide="eye" class="h-4 w-4"></i>
+            </button>
+          </div>
+        </label>
+
+        <div class="flex items-center justify-between gap-3 pt-1">
+          <label class="inline-flex min-w-0 items-center gap-2 text-[13px] font-medium text-[var(--cexie-muted-foreground)]">
+            <input type="checkbox" checked class="h-4 w-4 rounded border-[var(--cexie-border)] accent-[var(--cexie-primary)]">
+            <span>记住登录</span>
+          </label>
+          <button type="button" class="shrink-0 text-[13px] font-semibold text-[var(--cexie-primary)]">忘记密码</button>
+        </div>
+
+        <button id="login-submit" data-dom-id="login-submit" type="submit" class="mt-2 inline-flex h-12 w-full items-center justify-center rounded-[var(--cexie-radius-sm)] bg-[var(--cexie-primary)] px-4 text-[15px] font-semibold text-[var(--cexie-primary-foreground)] shadow-[0_10px_20px_rgba(47,94,138,0.18)] active:bg-[var(--cexie-primary-strong)]">
+          登录调试工作台
+          <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+        </button>
+      </form>
+
+      <div class="mt-5 rounded-[var(--cexie-radius-md)] border border-[var(--cexie-divider)] bg-[var(--cexie-primary-surface)] p-4">
+        <div class="flex items-start gap-3">
+          <i data-lucide="badge-info" class="mt-0.5 h-4 w-4 shrink-0 text-[var(--cexie-primary)]"></i>
+          <div class="min-w-0">
+            <p class="text-[13px] font-semibold text-[var(--cexie-foreground)]">演示账号</p>
+            <p class="mt-1 text-[12px] leading-5 text-[var(--cexie-muted-foreground)]">账号：engineer_demo　密码：123456</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="relative mt-6 grid grid-cols-3 gap-3">
+      <div class="rounded-[var(--cexie-radius-md)] border border-[var(--cexie-border)] bg-white/72 p-3 text-center shadow-[var(--cexie-shadow-1)] backdrop-blur">
+        <i data-lucide="radio-receiver" class="mx-auto h-5 w-5 text-[var(--cexie-primary)]"></i>
+        <p class="mt-2 text-[12px] font-semibold">设备联调</p>
+      </div>
+      <div class="rounded-[var(--cexie-radius-md)] border border-[var(--cexie-border)] bg-white/72 p-3 text-center shadow-[var(--cexie-shadow-1)] backdrop-blur">
+        <i data-lucide="send-horizontal" class="mx-auto h-5 w-5 text-[var(--cexie-primary)]"></i>
+        <p class="mt-2 text-[12px] font-semibold">指令下发</p>
+      </div>
+      <div class="rounded-[var(--cexie-radius-md)] border border-[var(--cexie-border)] bg-white/72 p-3 text-center shadow-[var(--cexie-shadow-1)] backdrop-blur">
+        <i data-lucide="receipt-text" class="mx-auto h-5 w-5 text-[var(--cexie-primary)]"></i>
+        <p class="mt-2 text-[12px] font-semibold">回执追踪</p>
+      </div>
+    </section>
+
+    <footer class="relative mt-auto pb-2 pt-8">
+      <div class="flex items-start gap-2 rounded-[var(--cexie-radius-md)] border border-[var(--cexie-border)] bg-[var(--cexie-card)]/78 p-3 text-[12px] leading-5 text-[var(--cexie-muted-foreground)] shadow-[var(--cexie-shadow-1)] backdrop-blur">
+        <i data-lucide="shield-check" class="mt-0.5 h-4 w-4 shrink-0 text-[var(--cexie-success)]"></i>
+        <p>弱网下自动保留登录态；请勿在非授权设备上保存账号。</p>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

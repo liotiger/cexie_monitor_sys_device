@@ -1,0 +1,227 @@
+{
+  "data": [
+    {
+      "id": "page-login",
+      "title": "登录",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1783580600000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 913,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-96fe4095",
+          "measuredAt": 1785740310637
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/login.html",
+        "interactions": [
+          {
+            "domId": "login-submit",
+            "targetPageId": "page-projects",
+            "transitionLabel": "登录进入工程"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-projects",
+      "title": "工程",
+      "type": "page",
+      "version": 2,
+      "createdAt": 1783574101000,
+      "canvasData": {
+        "x": 309,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1080,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-80a3607d",
+          "measuredAt": 1785740310637
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/projects.html",
+        "interactions": [
+          {
+            "domId": "project-open-devices",
+            "targetPageId": "page-devices",
+            "transitionLabel": "进入设备调试"
+          },
+          {
+            "domId": "nav-devices",
+            "targetPageId": "page-devices",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-profile",
+            "targetPageId": "page-profile",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-devices",
+      "title": "设备",
+      "type": "page",
+      "version": 2,
+      "createdAt": 1783574102000,
+      "canvasData": {
+        "x": 618,
+        "y": 0,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-26b8b2ea",
+          "measuredAt": 1785740310637
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/devices.html",
+        "interactions": [
+          {
+            "domId": "device-card-open",
+            "targetPageId": "page-device-operation",
+            "transitionLabel": "进入设备操作"
+          },
+          {
+            "domId": "nav-projects",
+            "targetPageId": "page-projects",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-profile",
+            "targetPageId": "page-profile",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-device-operation",
+      "title": "设备操作",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1783574102500,
+      "canvasData": {
+        "x": 0,
+        "y": 379,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 1365,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-36d120a5",
+          "measuredAt": 1785740310637
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/device-operation.html",
+        "interactions": [
+          {
+            "domId": "device-back-list",
+            "targetPageId": "page-devices",
+            "transitionLabel": "返回设备列表"
+          },
+          {
+            "domId": "device-send-command",
+            "targetPageId": "page-device-operation",
+            "transitionLabel": "发送指令"
+          },
+          {
+            "domId": "device-quick-status",
+            "targetPageId": "page-device-operation",
+            "transitionLabel": "状态轮询"
+          },
+          {
+            "domId": "device-quick-collect",
+            "targetPageId": "page-device-operation",
+            "transitionLabel": "立即采集"
+          },
+          {
+            "domId": "device-quick-sync",
+            "targetPageId": "page-device-operation",
+            "transitionLabel": "时钟同步"
+          },
+          {
+            "domId": "device-quick-reboot",
+            "targetPageId": "page-device-operation",
+            "transitionLabel": "重启设备"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-profile",
+      "title": "我的",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1783574103000,
+      "canvasData": {
+        "x": 0,
+        "y": 890,
+        "group": 0,
+        "layoutSnapshot": {
+          "version": 1,
+          "contentHeight": 900,
+          "viewportWidth": 375,
+          "sourceHash": "fnv1a-d47c7d20",
+          "measuredAt": 1785740310637
+        }
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/profile.html",
+        "interactions": [
+          {
+            "domId": "nav-projects",
+            "targetPageId": "page-projects",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-devices",
+            "targetPageId": "page-devices",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pending-page-projects-hub",
+      "title": "projects-hub",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785169957397,
+      "canvasData": {
+        "x": 309,
+        "y": 890,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": ""
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "mobile",
+    "projectName": "测斜监测现场调试版",
+    "designLibrary": null,
+    "visualEditorEnabled": false
+  }
+}

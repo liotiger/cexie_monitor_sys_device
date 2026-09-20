@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设备操作</title>
+    <style id="theme-vars">
+:root {
+  --cexie-font-sans: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --cexie-font-mono: "SFMono-Regular", "JetBrains Mono", Consolas, monospace;
+  --cexie-background: #f3f6fa;
+  --cexie-foreground: #1a2430;
+  --cexie-muted: #eef3f8;
+  --cexie-muted-foreground: #667589;
+  --cexie-card: #ffffff;
+  --cexie-card-foreground: #1a2430;
+  --cexie-border: #d6e0ea;
+  --cexie-divider: #e7edf3;
+  --cexie-primary: #2f5e8a;
+  --cexie-primary-strong: #244767;
+  --cexie-primary-soft: #dce8f3;
+  --cexie-primary-surface: #edf4fa;
+  --cexie-primary-foreground: #ffffff;
+  --cexie-success: #2f7a61;
+  --cexie-success-surface: #e7f4ee;
+  --cexie-warning: #a46c25;
+  --cexie-warning-surface: #fbf2e5;
+  --cexie-error: #b25454;
+  --cexie-error-surface: #faecec;
+  --cexie-info: #406f9a;
+  --cexie-info-surface: #eaf1f8;
+  --cexie-radius-xs: 6px;
+  --cexie-radius-sm: 8px;
+  --cexie-radius-md: 12px;
+  --cexie-radius-lg: 16px;
+  --cexie-shadow-1: 0 4px 12px rgba(20, 36, 54, 0.04);
+  --cexie-shadow-2: 0 10px 24px rgba(20, 36, 54, 0.05);
+}
+.dark {
+  --cexie-background: #111922;
+  --cexie-foreground: #e7edf4;
+  --cexie-muted: #18232f;
+  --cexie-muted-foreground: #93a2b4;
+  --cexie-card: #16212c;
+  --cexie-card-foreground: #e7edf4;
+  --cexie-border: #273747;
+  --cexie-divider: #223241;
+  --cexie-primary: #5f88b1;
+  --cexie-primary-strong: #7a9fc3;
+  --cexie-primary-soft: #213549;
+  --cexie-primary-surface: #182837;
+  --cexie-primary-foreground: #f8fbff;
+  --cexie-success: #5ca58c;
+  --cexie-success-surface: #173126;
+  --cexie-warning: #cea15e;
+  --cexie-warning-surface: #392c18;
+  --cexie-error: #d68888;
+  --cexie-error-surface: #351f1f;
+  --cexie-info: #7aa8cf;
+  --cexie-info-surface: #1b2d3f;
+}
+body { font-family: var(--cexie-font-sans); color: var(--cexie-foreground); background: var(--cexie-background); }
+.cexie-h1 { font-size: 24px; line-height: 1.24; font-weight: 700; letter-spacing: -0.02em; }
+.cexie-h2 { font-size: 18px; line-height: 1.35; font-weight: 700; }
+.cexie-h3 { font-size: 16px; line-height: 1.4; font-weight: 600; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--cexie-background);
+    --color-foreground: var(--cexie-foreground);
+    --color-card: var(--cexie-card);
+    --color-card-foreground: var(--cexie-card-foreground);
+    --color-primary: var(--cexie-primary);
+    --color-primary-foreground: var(--cexie-primary-foreground);
+    --color-muted: var(--cexie-muted);
+    --color-muted-foreground: var(--cexie-muted-foreground);
+    --color-border: var(--cexie-border);
+  }
+  @layer base {
+    body { background: var(--cexie-background); color: var(--cexie-foreground); }
+  }
+    </style>
+</head>
+<body class="min-h-screen bg-[var(--cexie-background)] text-[var(--cexie-foreground)]">
+  <main class="mx-auto w-full max-w-md px-4 pb-24 pt-4 sm:max-w-lg">
+    <header class="sticky top-0 z-20 -mx-4 border-b border-[var(--cexie-border)] bg-[var(--cexie-background)]/96 px-4 py-3 backdrop-blur">
+      <div class="flex items-center gap-3">
+        <button id="device-back-list" data-dom-id="device-back-list" type="button" class="inline-flex h-9 w-9 items-center justify-center rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] text-[var(--cexie-primary)]">
+          <i data-lucide="arrow-left" class="h-4 w-4"></i>
+        </button>
+        <div class="min-w-0 flex-1">
+          <p class="truncate text-[12px] text-[var(--cexie-muted-foreground)]">设备操作台</p>
+          <h1 class="cexie-h1 truncate">CX-GW-12</h1>
+        </div>
+        <span class="inline-flex h-8 items-center rounded-[var(--cexie-radius-xs)] bg-[var(--cexie-warning-surface)] px-3 text-[12px] font-semibold text-[var(--cexie-warning)]">异常</span>
+      </div>
+      <div class="mt-3 grid grid-cols-3 gap-2">
+        <div class="rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-3">
+          <p class="text-[12px] text-[var(--cexie-muted-foreground)]">所属工程</p>
+          <p class="mt-1 truncate text-[13px] font-semibold">南城深基坑三期监测</p>
+        </div>
+        <div class="rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-3">
+          <p class="text-[12px] text-[var(--cexie-muted-foreground)]">网络</p>
+          <p class="mt-1 text-[13px] font-semibold">4G</p>
+        </div>
+        <div class="rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-3">
+          <p class="text-[12px] text-[var(--cexie-muted-foreground)]">信号</p>
+          <p class="mt-1 text-[13px] font-semibold text-[var(--cexie-warning)]">-93 dBm</p>
+        </div>
+      </div>
+    </header>
+
+    <section class="mt-4 rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-4 shadow-[var(--cexie-shadow-1)]">
+      <h2 class="cexie-h3">设备基础信息</h2>
+      <div class="mt-3 grid grid-cols-2 gap-3 text-[13px]">
+        <div class="rounded-[var(--cexie-radius-sm)] bg-[var(--cexie-muted)] p-3">
+          <p class="text-[12px] text-[var(--cexie-muted-foreground)]">IMEI</p>
+          <p class="mt-1 font-mono">861002340045826</p>
+        </div>
+        <div class="rounded-[var(--cexie-radius-sm)] bg-[var(--cexie-muted)] p-3">
+          <p class="text-[12px] text-[var(--cexie-muted-foreground)]">最后在线</p>
+          <p class="mt-1 font-semibold">11:18:42</p>
+        </div>
+        <div class="rounded-[var(--cexie-radius-sm)] bg-[var(--cexie-muted)] p-3">
+          <p class="text-[12px] text-[var(--cexie-muted-foreground)]">当前绑定测孔</p>
+          <p class="mt-1 font-semibold">6 个</p>
+        </div>
+        <div class="rounded-[var(--cexie-radius-sm)] bg-[var(--cexie-muted)] p-3">
+          <p class="text-[12px] text-[var(--cexie-muted-foreground)]">状态摘要</p>
+          <p class="mt-1 font-semibold text-[var(--cexie-warning)]">回执超时</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-4 rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-4 shadow-[var(--cexie-shadow-1)]">
+      <div class="flex items-center justify-between gap-3">
+        <h2 class="cexie-h3">设备操作区</h2>
+        <span class="text-[12px] text-[var(--cexie-muted-foreground)]">现场调试台</span>
+      </div>
+      <div class="mt-3 space-y-3">
+        <label class="block">
+          <span class="mb-2 block text-[12px] font-medium text-[var(--cexie-muted-foreground)]">指令发送</span>
+          <input type="text" value="READ_STATUS" class="h-11 w-full rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-background)] px-4 text-[14px] outline-none" placeholder="输入指令">
+        </label>
+        <label class="block">
+          <span class="mb-2 block text-[12px] font-medium text-[var(--cexie-muted-foreground)]">参数</span>
+          <input type="text" value="channel=all;timeout=10" class="h-11 w-full rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-background)] px-4 font-mono text-[13px] outline-none" placeholder="输入参数">
+        </label>
+        <button id="device-send-command" data-dom-id="device-send-command" type="button" class="inline-flex h-11 w-full items-center justify-center rounded-[var(--cexie-radius-sm)] bg-[var(--cexie-primary)] text-[14px] font-semibold text-[var(--cexie-primary-foreground)]">发送指令</button>
+      </div>
+    </section>
+
+    <section class="mt-4 rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-4 shadow-[var(--cexie-shadow-1)]">
+      <div class="flex items-center justify-between gap-3">
+        <h2 class="cexie-h3">快捷指令</h2>
+        <span class="text-[12px] text-[var(--cexie-muted-foreground)]">高频动作</span>
+      </div>
+      <div class="mt-3 grid grid-cols-2 gap-3">
+        <button id="device-quick-status" data-dom-id="device-quick-status" type="button" class="inline-flex h-11 items-center justify-center rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-primary-surface)] px-3 text-[13px] font-semibold text-[var(--cexie-primary)]">状态轮询</button>
+        <button id="device-quick-collect" data-dom-id="device-quick-collect" type="button" class="inline-flex h-11 items-center justify-center rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] px-3 text-[13px] font-semibold">立即采集</button>
+        <button id="device-quick-sync" data-dom-id="device-quick-sync" type="button" class="inline-flex h-11 items-center justify-center rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] px-3 text-[13px] font-semibold">时钟同步</button>
+        <button id="device-quick-reboot" data-dom-id="device-quick-reboot" type="button" class="inline-flex h-11 items-center justify-center rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-error-surface)] px-3 text-[13px] font-semibold text-[var(--cexie-error)]">重启设备</button>
+      </div>
+    </section>
+
+    <section class="mt-4 rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-4 shadow-[var(--cexie-shadow-1)]">
+      <div class="flex items-center justify-between gap-3">
+        <h2 class="cexie-h3">回执结果</h2>
+        <span class="text-[12px] text-[var(--cexie-muted-foreground)]">最近 3 条</span>
+      </div>
+      <div class="mt-3 divide-y divide-[var(--cexie-divider)]">
+        <div class="py-3 first:pt-0">
+          <div class="flex items-start justify-between gap-3">
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex h-6 items-center rounded-[var(--cexie-radius-xs)] bg-[var(--cexie-success-surface)] px-2 text-[11px] font-semibold text-[var(--cexie-success)]">成功</span>
+                <p class="text-[13px] font-semibold">READ_STATUS</p>
+              </div>
+              <p class="mt-1 text-[12px] text-[var(--cexie-muted-foreground)]">11:22:48 · 返回 200 · 耗时 1.2s</p>
+              <p class="mt-2 text-[12px] leading-5 text-[var(--cexie-muted-foreground)]">网络恢复，串口正常，下位机 6 台全部应答。</p>
+            </div>
+            <i data-lucide="badge-check" class="mt-0.5 h-4 w-4 shrink-0 text-[var(--cexie-success)]"></i>
+          </div>
+        </div>
+        <div class="py-3">
+          <div class="flex items-start justify-between gap-3">
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex h-6 items-center rounded-[var(--cexie-radius-xs)] bg-[var(--cexie-warning-surface)] px-2 text-[11px] font-semibold text-[var(--cexie-warning)]">失败</span>
+                <p class="text-[13px] font-semibold">CLOCK_SYNC</p>
+              </div>
+              <p class="mt-1 text-[12px] text-[var(--cexie-muted-foreground)]">11:19:03 · 返回超时 · 重试 1 次</p>
+              <p class="mt-2 text-[12px] leading-5 text-[var(--cexie-muted-foreground)]">设备忙，未完成时钟写入，建议先执行状态轮询再重发。</p>
+            </div>
+            <i data-lucide="circle-x" class="mt-0.5 h-4 w-4 shrink-0 text-[var(--cexie-warning)]"></i>
+          </div>
+        </div>
+        <div class="py-3 last:pb-0">
+          <div class="flex items-start justify-between gap-3">
+            <div class="min-w-0">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex h-6 items-center rounded-[var(--cexie-radius-xs)] bg-[var(--cexie-info-surface)] px-2 text-[11px] font-semibold text-[var(--cexie-info)]">摘要</span>
+                <p class="text-[13px] font-semibold">REBOOT_DEVICE</p>
+              </div>
+              <p class="mt-1 text-[12px] text-[var(--cexie-muted-foreground)]">11:15:27 · 设备重启中 · 预计恢复 40 秒</p>
+              <p class="mt-2 text-[12px] leading-5 text-[var(--cexie-muted-foreground)]">已收到重启确认帧，网络重新注册后自动刷新在线状态。</p>
+            </div>
+            <i data-lucide="logs" class="mt-0.5 h-4 w-4 shrink-0 text-[var(--cexie-info)]"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+{
+  "pages": [
+    {
+      "path": "pages/login/index",
+      "style": {
+        "navigationBarTitleText": "登录",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/dashboard/index",
+      "style": {
+        "navigationBarTitleText": "首页"
+      }
+    },
+    {
+      "path": "pages/projects/index",
+      "style": {
+        "navigationBarTitleText": "工程",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/devices/index",
+      "style": {
+        "navigationBarTitleText": "设备",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/device-operation/index",
+      "style": {
+        "navigationBarTitleText": "设备操作",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/project-detail/index",
+      "style": {
+        "navigationBarTitleText": "工程详情"
+      }
+    },
+    {
+      "path": "pages/hole-monitor/index",
+      "style": {
+        "navigationBarTitleText": "测孔监测"
+      }
+    },
+    {
+      "path": "pages/trend-analysis/index",
+      "style": {
+        "navigationBarTitleText": "趋势分析",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/reports/index",
+      "style": {
+        "navigationBarTitleText": "报表中心"
+      }
+    },
+    {
+      "path": "pages/profile/index",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
+    }
+  ]
+}

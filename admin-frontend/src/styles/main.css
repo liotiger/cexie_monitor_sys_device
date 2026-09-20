@@ -1,0 +1,42 @@
+﻿* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #app {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f3f4f6;
+  color: #111827;
+  line-height: 1.5;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-stack,
+.raw-data-page {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+}
+
+.panel,
+.table-container {
+  min-width: 0;
+}
+
+.panel {
+  overflow-x: auto;
+}

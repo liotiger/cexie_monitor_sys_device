@@ -1,0 +1,82 @@
+<div class="mx-auto min-h-screen max-w-md bg-[var(--cexie-background)] text-[var(--cexie-foreground)] sm:max-w-lg">
+  <header class="sticky top-0 z-20 border-b border-[var(--cexie-border)] bg-[var(--cexie-card)]/95 px-4 py-3 backdrop-blur">
+    <div class="flex items-center justify-between gap-3">
+      <div class="min-w-0">
+        <p class="cexie-caption truncate text-[var(--cexie-muted-foreground)]">工程切换 / 页面标题</p>
+        <h1 class="cexie-h2 truncate">移动端项目壳层</h1>
+      </div>
+      <button class="inline-flex h-9 w-9 items-center justify-center rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] text-[var(--cexie-primary)]">
+        <i data-lucide="bell" class="h-4 w-4"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="space-y-4 px-4 py-4 pb-28">
+    <section class="rounded-[var(--cexie-radius-md)] bg-[var(--cexie-card)] p-4 shadow-[var(--cexie-shadow-1)]">
+      <div class="flex items-start justify-between gap-3">
+        <div class="min-w-0">
+          <h2 class="cexie-h3 truncate">主数据卡片</h2>
+          <p class="cexie-caption line-clamp-2 text-[var(--cexie-muted-foreground)]">用于承接总览、设备状态、工程摘要等首屏信息。</p>
+        </div>
+        <span class="inline-flex h-7 items-center whitespace-nowrap rounded-[var(--cexie-radius-xs)] bg-[var(--cexie-primary-soft)] px-2.5 text-[12px] font-semibold text-[var(--cexie-primary)]">在线</span>
+      </div>
+      <div class="mt-4 grid grid-cols-3 gap-3">
+        <div class="min-w-0 border-r border-[var(--cexie-divider)] pr-2 last:border-r-0">
+          <p class="cexie-caption text-[var(--cexie-muted-foreground)]">指标一</p>
+          <p class="cexie-metric whitespace-nowrap text-[var(--cexie-primary)]">26</p>
+        </div>
+        <div class="min-w-0 border-r border-[var(--cexie-divider)] pr-2 last:border-r-0">
+          <p class="cexie-caption text-[var(--cexie-muted-foreground)]">指标二</p>
+          <p class="cexie-metric whitespace-nowrap text-[var(--cexie-primary)]">91%</p>
+        </div>
+        <div class="min-w-0">
+          <p class="cexie-caption text-[var(--cexie-muted-foreground)]">指标三</p>
+          <p class="cexie-metric whitespace-nowrap text-[var(--cexie-primary)]">4</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="rounded-[var(--cexie-radius-md)] bg-[var(--cexie-card)] p-4 shadow-[var(--cexie-shadow-1)]">
+      <div class="flex items-center justify-between gap-3">
+        <h2 class="cexie-h3 truncate">列表区</h2>
+        <button class="inline-flex h-8 items-center justify-center rounded-[var(--cexie-radius-xs)] border border-[var(--cexie-border)] px-3 text-[13px] font-medium text-[var(--cexie-primary)]">查看全部</button>
+      </div>
+      <div class="mt-3 divide-y divide-[var(--cexie-divider)]">
+        <article class="py-3 first:pt-0 last:pb-0">
+          <div class="flex items-start justify-between gap-3">
+            <div class="min-w-0">
+              <p class="truncate text-[14px] font-semibold">工程名称 / 测孔编号</p>
+              <p class="mt-1 line-clamp-2 text-[12px] text-[var(--cexie-muted-foreground)]">使用分隔线而不是子卡片，避免移动端层级过深。</p>
+            </div>
+            <i data-lucide="chevron-right" class="mt-0.5 h-4 w-4 shrink-0 text-[var(--cexie-muted-foreground)]"></i>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <nav class="fixed bottom-0 left-0 right-0 border-t border-[var(--cexie-border)] bg-[var(--cexie-card)]/98 backdrop-blur">
+    <div class="mx-auto grid max-w-md grid-cols-5 px-2 py-2 sm:max-w-lg">
+      <button class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-primary)]">
+        <i data-lucide="house" class="h-4 w-4"></i>
+        <span class="text-[11px] font-medium">首页</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-muted-foreground)]">
+        <i data-lucide="folder-kanban" class="h-4 w-4"></i>
+        <span class="text-[11px] font-medium">工程</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-muted-foreground)]">
+        <i data-lucide="chart-line" class="h-4 w-4"></i>
+        <span class="text-[11px] font-medium">趋势</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-muted-foreground)]">
+        <i data-lucide="file-text" class="h-4 w-4"></i>
+        <span class="text-[11px] font-medium">报表</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-muted-foreground)]">
+        <i data-lucide="user-round" class="h-4 w-4"></i>
+        <span class="text-[11px] font-medium">我的</span>
+      </button>
+    </div>
+  </nav>
+</div>

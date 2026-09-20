@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考核分析</title>
+    <style id="theme-vars">
+:root {
+  --cexie-font-sans: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --cexie-font-mono: "SFMono-Regular", "JetBrains Mono", Consolas, monospace;
+
+  --cexie-background: #f3f6fa;
+  --cexie-foreground: #1a2430;
+  --cexie-muted: #eef3f8;
+  --cexie-muted-foreground: #667589;
+  --cexie-card: #ffffff;
+  --cexie-card-foreground: #1a2430;
+  --cexie-border: #d6e0ea;
+  --cexie-divider: #e7edf3;
+
+  --cexie-primary: #2f5e8a;
+  --cexie-primary-strong: #244767;
+  --cexie-primary-soft: #dce8f3;
+  --cexie-primary-surface: #edf4fa;
+  --cexie-primary-foreground: #ffffff;
+
+  --cexie-success: #2f7a61;
+  --cexie-success-surface: #e7f4ee;
+  --cexie-warning: #a46c25;
+  --cexie-warning-surface: #fbf2e5;
+  --cexie-error: #b25454;
+  --cexie-error-surface: #faecec;
+  --cexie-info: #406f9a;
+  --cexie-info-surface: #eaf1f8;
+
+  --cexie-radius-xs: 6px;
+  --cexie-radius-sm: 8px;
+  --cexie-radius-md: 12px;
+  --cexie-radius-lg: 16px;
+
+  --cexie-shadow-1: 0 4px 12px rgba(20, 36, 54, 0.04);
+  --cexie-shadow-2: 0 10px 24px rgba(20, 36, 54, 0.05);
+
+  --cexie-spacing-1: 4px;
+  --cexie-spacing-2: 8px;
+  --cexie-spacing-3: 12px;
+  --cexie-spacing-4: 16px;
+  --cexie-spacing-5: 20px;
+  --cexie-spacing-6: 24px;
+}
+
+.dark {
+  --cexie-background: #111922;
+  --cexie-foreground: #e7edf4;
+  --cexie-muted: #18232f;
+  --cexie-muted-foreground: #93a2b4;
+  --cexie-card: #16212c;
+  --cexie-card-foreground: #e7edf4;
+  --cexie-border: #273747;
+  --cexie-divider: #223241;
+
+  --cexie-primary: #5f88b1;
+  --cexie-primary-strong: #7a9fc3;
+  --cexie-primary-soft: #213549;
+  --cexie-primary-surface: #182837;
+  --cexie-primary-foreground: #f8fbff;
+
+  --cexie-success: #5ca58c;
+  --cexie-success-surface: #173126;
+  --cexie-warning: #cea15e;
+  --cexie-warning-surface: #392c18;
+  --cexie-error: #d68888;
+  --cexie-error-surface: #351f1f;
+  --cexie-info: #7aa8cf;
+  --cexie-info-surface: #1b2d3f;
+}
+
+body {
+  font-family: var(--cexie-font-sans);
+  color: var(--cexie-foreground);
+  background: var(--cexie-background);
+}
+
+.cexie-display {
+  font-family: var(--cexie-font-sans);
+  font-size: clamp(28px, 7vw, 34px);
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.cexie-h1 {
+  font-family: var(--cexie-font-sans);
+  font-size: 24px;
+  line-height: 1.24;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.cexie-h2 {
+  font-family: var(--cexie-font-sans);
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.cexie-h3 {
+  font-family: var(--cexie-font-sans);
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.cexie-body {
+  font-family: var(--cexie-font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.cexie-caption {
+  font-family: var(--cexie-font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.cexie-metric {
+  font-family: var(--cexie-font-mono);
+  font-size: clamp(22px, 5.8vw, 28px);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--cexie-background);
+    --color-foreground: var(--cexie-foreground);
+    --color-card: var(--cexie-card);
+    --color-card-foreground: var(--cexie-card-foreground);
+    --color-primary: var(--cexie-primary);
+    --color-primary-foreground: var(--cexie-primary-foreground);
+    --color-muted: var(--cexie-muted);
+    --color-muted-foreground: var(--cexie-muted-foreground);
+    --color-border: var(--cexie-border);
+    --radius-sm: var(--cexie-radius-sm);
+    --radius-md: var(--cexie-radius-md);
+    --radius-lg: var(--cexie-radius-lg);
+  }
+  @layer base {
+    body { background: var(--cexie-background); color: var(--cexie-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--cexie-background); }
+      .text-background { color: var(--cexie-background); }
+      .border-background { border-color: var(--cexie-background); }
+      .ring-background { --tw-ring-color: var(--cexie-background); }
+      .bg-foreground { background-color: var(--cexie-foreground); }
+      .text-foreground { color: var(--cexie-foreground); }
+      .border-foreground { border-color: var(--cexie-foreground); }
+      .ring-foreground { --tw-ring-color: var(--cexie-foreground); }
+      .bg-card { background-color: var(--cexie-card); }
+      .text-card { color: var(--cexie-card); }
+      .border-card { border-color: var(--cexie-card); }
+      .ring-card { --tw-ring-color: var(--cexie-card); }
+      .bg-card-foreground { background-color: var(--cexie-card-foreground); }
+      .text-card-foreground { color: var(--cexie-card-foreground); }
+      .border-card-foreground { border-color: var(--cexie-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--cexie-card-foreground); }
+      .bg-primary { background-color: var(--cexie-primary); }
+      .text-primary { color: var(--cexie-primary); }
+      .border-primary { border-color: var(--cexie-primary); }
+      .ring-primary { --tw-ring-color: var(--cexie-primary); }
+      .bg-primary-foreground { background-color: var(--cexie-primary-foreground); }
+      .text-primary-foreground { color: var(--cexie-primary-foreground); }
+      .border-primary-foreground { border-color: var(--cexie-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--cexie-primary-foreground); }
+      .bg-muted { background-color: var(--cexie-muted); }
+      .text-muted { color: var(--cexie-muted); }
+      .border-muted { border-color: var(--cexie-muted); }
+      .ring-muted { --tw-ring-color: var(--cexie-muted); }
+      .bg-muted-foreground { background-color: var(--cexie-muted-foreground); }
+      .text-muted-foreground { color: var(--cexie-muted-foreground); }
+      .border-muted-foreground { border-color: var(--cexie-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--cexie-muted-foreground); }
+      .bg-border { background-color: var(--cexie-border); }
+      .text-border { color: var(--cexie-border); }
+      .border-border { border-color: var(--cexie-border); }
+      .ring-border { --tw-ring-color: var(--cexie-border); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <main>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

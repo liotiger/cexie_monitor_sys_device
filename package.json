@@ -1,0 +1,49 @@
+{
+  "name": "cexie-monitor-sys",
+  "version": "1.0.0",
+  "description": "测斜监测系统 - 管理端、客户端与独立设备网关协同的监测平台",
+  "private": true,
+  "scripts": {
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:admin-backend": "npm --prefix admin-backend run dev",
+    "dev:admin-frontend": "npm --prefix admin-frontend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:mobile": "npm --prefix mobile-app run dev:h5",
+    "dev": "concurrently -k \"npm run dev:backend\" \"npm run dev:admin-backend\" \"npm run dev:admin-frontend\" \"npm run dev:frontend\" \"npm run dev:mobile\"",
+    "start:backend": "npm --prefix backend run start",
+    "start:admin-backend": "npm --prefix admin-backend run start",
+    "start:admin-frontend": "npm --prefix admin-frontend run start",
+    "start:frontend": "npm --prefix frontend run start",
+    "start:mobile": "npm --prefix mobile-app run start:h5",
+    "start": "concurrently -k \"npm run start:backend\" \"npm run start:admin-backend\" \"npm run start:admin-frontend\" \"npm run start:frontend\" \"npm run start:mobile\"",
+    "build:admin-frontend": "npm --prefix admin-frontend run build:subpath",
+    "build:frontend": "npm --prefix frontend run build",
+    "build:mobile": "npm --prefix mobile-app run build:h5",
+    "build": "npm run build:admin-frontend && npm run build:frontend && npm run build:mobile",
+    "preview:admin-frontend": "npm --prefix admin-frontend run preview",
+    "preview:frontend": "npm --prefix frontend run preview",
+    "prod": "pm2 start ecosystem.config.js",
+    "prod:stop": "pm2 stop ecosystem.config.js",
+    "prod:restart": "pm2 restart ecosystem.config.js",
+    "prod:delete": "pm2 delete ecosystem.config.js",
+    "prod:logs": "pm2 logs",
+    "prod:save": "pm2 save",
+    "install:backend": "npm --prefix backend install",
+    "install:admin-backend": "npm --prefix admin-backend install",
+    "install:admin-frontend": "npm --prefix admin-frontend install",
+    "install:frontend": "npm --prefix frontend install",
+    "install:mobile": "npm --prefix mobile-app install",
+    "install:all": "npm run install:backend && npm run install:admin-backend && npm run install:admin-frontend && npm run install:frontend && npm run install:mobile",
+    "test:backend": "npm --prefix backend run test"
+  },
+  "keywords": [
+    "inclinometer",
+    "monitoring",
+    "device-gateway"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

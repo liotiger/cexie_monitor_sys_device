@@ -1,0 +1,205 @@
+{
+  "success": true,
+  "outcome": "passed",
+  "repairable": true,
+  "terminalViolations": [],
+  "terminalBlockingSummary": null,
+  "skillProvenance": {
+    "name": "solo-design",
+    "version": "2026.07.22.00.00.00",
+    "version_source": "skill-release-manifest.json",
+    "runtime_skill_dir": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design",
+    "recorded_at": null,
+    "expected_version": "2026.07.22.00.00.00",
+    "status": "manifest_fallback",
+    "read_status": "ok",
+    "reason": "runtime-orchestration-summary.json missing skillProvenance; used skill-release-manifest.json"
+  },
+  "operatingMode": "free-explore",
+  "renderBlockingErrorCount": 0,
+  "softWarningCount": 20,
+  "renderBlockingErrors": [],
+  "errorSignatures": [],
+  "softWarnings": [
+    "[html-head-style] bind-device.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[html-head-style] hole-console.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[html-head-style] monitoring-task.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[html-head-style] workbench.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[orchestration-summary] runtime-orchestration-summary.json is missing skillProvenance.name/version/version_source. Version provenance will be reported as observed_unknown by external evaluators.",
+    "[repair-ledger] validationRepairLedger[0].repairActions[] is missing",
+    "[repair-ledger] validationRepairLedger[0].revalidationReportPath is missing",
+    "[repair-ledger] validationRepairLedger[0].revalidationReportHash is missing",
+    "[repair-ledger] validationRepairLedger[0].revalidationSuccess should be a boolean",
+    "[html-quality] colors_and_type.css: ordinary/static shadow tokens must keep every shadow alpha <= 0.05; deeper shadows are allowed only for floating-layer tokens such as modal/popover/dropdown/drawer/overlay (--cexieweb-shadow-1: 0 6px 18px rgba(3, 9, 18, 0.18), --cexieweb-shadow-2: 0 18px 48px rgba(3, 9, 18, 0.28)).",
+    "[html-quality] bind-device.html: Tailwind named color utilities are forbidden (text-slate-300, text-slate-400, border-rose-400, bg-rose-500, text-rose-300, border-amber-300, bg-amber-400, border-sky-300). Use brand CSS variables instead.",
+    "[html-quality] bind-device.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] hole-console.html: Tailwind named color utilities are forbidden (text-slate-300, text-slate-400, border-rose-400, bg-rose-500, text-rose-300, border-amber-300, bg-amber-400, border-sky-300). Use brand CSS variables instead.",
+    "[html-quality] hole-console.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] monitoring-task.html: Tailwind named color utilities are forbidden (text-slate-300, text-slate-400, border-rose-400, bg-rose-500, text-rose-300, border-amber-300, bg-amber-400, border-sky-300). Use brand CSS variables instead.",
+    "[html-quality] monitoring-task.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] projects-hub.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] projects-hub.html: free-explore pages must not use secondary/accent brand variables. Use the single primary hue, neutral tints, or --state-success/warning/error/info for real semantic states.",
+    "[html-quality] workbench.html: Tailwind named color utilities are forbidden (text-slate-300, text-slate-400, border-rose-400, bg-rose-500, text-rose-300, border-amber-300, bg-amber-400, border-sky-300). Use brand CSS variables instead.",
+    "[html-quality] workbench.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference."
+  ],
+  "repairPlanHints": [
+    {
+      "errorClass": "hardcoded-color-in-body",
+      "owner": "sub-agent",
+      "repairScope": "targeted-token-replace",
+      "strategy": "targeted_token_replace_once",
+      "affectedFiles": [
+        "bind-device.html"
+      ],
+      "repairReportPath": null,
+      "repairAlreadyAttempted": false,
+      "allowSourceRead": "no-full-html-read",
+      "maxValidationRuns": 2
+    },
+    {
+      "errorClass": "hardcoded-color-in-body",
+      "owner": "sub-agent",
+      "repairScope": "targeted-token-replace",
+      "strategy": "targeted_token_replace_once",
+      "affectedFiles": [
+        "hole-console.html"
+      ],
+      "repairReportPath": null,
+      "repairAlreadyAttempted": false,
+      "allowSourceRead": "no-full-html-read",
+      "maxValidationRuns": 2
+    },
+    {
+      "errorClass": "hardcoded-color-in-body",
+      "owner": "sub-agent",
+      "repairScope": "targeted-token-replace",
+      "strategy": "targeted_token_replace_once",
+      "affectedFiles": [
+        "monitoring-task.html"
+      ],
+      "repairReportPath": null,
+      "repairAlreadyAttempted": false,
+      "allowSourceRead": "no-full-html-read",
+      "maxValidationRuns": 2
+    },
+    {
+      "errorClass": "hardcoded-color-in-body",
+      "owner": "sub-agent",
+      "repairScope": "targeted-token-replace",
+      "strategy": "targeted_token_replace_once",
+      "affectedFiles": [
+        "projects-hub.html"
+      ],
+      "repairReportPath": null,
+      "repairAlreadyAttempted": false,
+      "allowSourceRead": "no-full-html-read",
+      "maxValidationRuns": 2
+    },
+    {
+      "errorClass": "hardcoded-color-in-body",
+      "owner": "sub-agent",
+      "repairScope": "targeted-token-replace",
+      "strategy": "targeted_token_replace_once",
+      "affectedFiles": [
+        "workbench.html"
+      ],
+      "repairReportPath": null,
+      "repairAlreadyAttempted": false,
+      "allowSourceRead": "no-full-html-read",
+      "maxValidationRuns": 2
+    }
+  ],
+  "repairActionTable": [],
+  "errorCount": 0,
+  "warningCount": 20,
+  "errors": [],
+  "warnings": [
+    "[html-head-style] bind-device.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[html-head-style] hole-console.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[html-head-style] monitoring-task.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[html-head-style] workbench.html: found 1 custom <style> block(s) in <head>. The <head> is owned by apply-html-head-contract.mjs; move custom styles before </body> or re-run apply-html-head-contract.mjs <css-path> <html-file> --replace-head to relocate them.",
+    "[orchestration-summary] runtime-orchestration-summary.json is missing skillProvenance.name/version/version_source. Version provenance will be reported as observed_unknown by external evaluators.",
+    "[repair-ledger] validationRepairLedger[0].repairActions[] is missing",
+    "[repair-ledger] validationRepairLedger[0].revalidationReportPath is missing",
+    "[repair-ledger] validationRepairLedger[0].revalidationReportHash is missing",
+    "[repair-ledger] validationRepairLedger[0].revalidationSuccess should be a boolean",
+    "[html-quality] colors_and_type.css: ordinary/static shadow tokens must keep every shadow alpha <= 0.05; deeper shadows are allowed only for floating-layer tokens such as modal/popover/dropdown/drawer/overlay (--cexieweb-shadow-1: 0 6px 18px rgba(3, 9, 18, 0.18), --cexieweb-shadow-2: 0 18px 48px rgba(3, 9, 18, 0.28)).",
+    "[html-quality] bind-device.html: Tailwind named color utilities are forbidden (text-slate-300, text-slate-400, border-rose-400, bg-rose-500, text-rose-300, border-amber-300, bg-amber-400, border-sky-300). Use brand CSS variables instead.",
+    "[html-quality] bind-device.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] hole-console.html: Tailwind named color utilities are forbidden (text-slate-300, text-slate-400, border-rose-400, bg-rose-500, text-rose-300, border-amber-300, bg-amber-400, border-sky-300). Use brand CSS variables instead.",
+    "[html-quality] hole-console.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] monitoring-task.html: Tailwind named color utilities are forbidden (text-slate-300, text-slate-400, border-rose-400, bg-rose-500, text-rose-300, border-amber-300, bg-amber-400, border-sky-300). Use brand CSS variables instead.",
+    "[html-quality] monitoring-task.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] projects-hub.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference.",
+    "[html-quality] projects-hub.html: free-explore pages must not use secondary/accent brand variables. Use the single primary hue, neutral tints, or --state-success/warning/error/info for real semantic states.",
+    "[html-quality] workbench.html: Tailwind named color utilities are forbidden (text-slate-300, text-slate-400, border-rose-400, bg-rose-500, text-rose-300, border-amber-300, bg-amber-400, border-sky-300). Use brand CSS variables instead.",
+    "[html-quality] workbench.html: hardcoded colors are forbidden outside <style id=\"theme-vars\">. Use brand CSS variables from the token reference."
+  ],
+  "validationRunDisciplineStatus": {
+    "declared": true,
+    "restoreMode": false,
+    "maxFullValidationRuns": 2,
+    "validationHistoryCount": 1,
+    "repairLedgerCount": 1,
+    "softWarningsTriggerRepair": false,
+    "terminalState": null,
+    "nextAction": null,
+    "violations": [],
+    "success": true
+  },
+  "terminalState": null,
+  "nextCheck": {
+    "type": "finish-readiness",
+    "command": "node \"c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs\" \"d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\" --check=all",
+    "fullValidationAllowed": false,
+    "reason": "workspace validation passed; run complete finish readiness before final delivery"
+  },
+  "repairBatch": [],
+  "repairContextPacket": {
+    "schema_version": "1.0",
+    "purpose": "small-context repair packet; read this before full validation-report.json",
+    "success": true,
+    "terminalState": null,
+    "skillProvenance": {
+      "name": "solo-design",
+      "version": "2026.07.22.00.00.00",
+      "version_source": "skill-release-manifest.json",
+      "runtime_skill_dir": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design",
+      "recorded_at": null,
+      "expected_version": "2026.07.22.00.00.00",
+      "status": "manifest_fallback",
+      "read_status": "ok",
+      "reason": "runtime-orchestration-summary.json missing skillProvenance; used skill-release-manifest.json"
+    },
+    "renderBlockingErrorCount": 0,
+    "softWarningCount": 20,
+    "renderBlockingErrors": [],
+    "repairActionTable": [],
+    "nextCheck": {
+      "type": "finish-readiness",
+      "command": "node \"c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs\" \"d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\" --check=all",
+      "fullValidationAllowed": false,
+      "reason": "workspace validation passed; run complete finish readiness before final delivery"
+    },
+    "forbidden": [
+      "do not read validator source",
+      "do not rerun full validation when nextCheck.fullValidationAllowed=false",
+      "do not start preview/browser unless user explicitly asks",
+      "do not hand-edit repair ledger fields"
+    ]
+  },
+  "projectFileHashes": {
+    "cexie-web-engineering-redesign.design": "4a07be2555ac33eb9047d453fa97e43377cb976a6c02dd1cc12e5d38ef2fabe8",
+    "colors_and_type.css": "fb2e8e290827409a7d048c8dd1812edba0b86f1717f43bf18f5ef63123f617f3",
+    "runtime-orchestration-summary.json": "31621d53d75bb7456bdf2d58ca0aadbe061fe212aa6f1821e5b56d48e2757ebd",
+    "pages/bind-device.html": "0cb7b66e9c4d811b524cf8cbea0d1301e9d5a7a31dedbb96d2912916f3c8dc5c",
+    "pages/hole-console.html": "a45131392b9c2bf248fa23c291433f3388be85853cae7328c976cfeff554702d",
+    "pages/monitoring-task.html": "b4383a3383db7453a397cc79f1e3df0021b21a4fcd7b97400791dc24e831140c",
+    "pages/projects-hub.html": "0b9ec87961aedaffe41788f1631572fe51285d062335b24230b46e0b776c3a52",
+    "pages/workbench.html": "9966b567ea619448db1243265baca3c2f261eb053a934b7cf70dfe52b003e94f"
+  },
+  "designDir": "d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign",
+  "expectedPages": null,
+  "requireInteractions": null,
+  "checkedAt": "2026-07-27T16:35:18.732Z"
+}

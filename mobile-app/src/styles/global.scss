@@ -1,0 +1,107 @@
+:root {
+  --cexie-font-sans: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --cexie-background: #f4f7fb;
+  --cexie-foreground: #1f2937;
+  --cexie-muted: #eef3f8;
+  --cexie-muted-foreground: #66758b;
+  --cexie-card: #ffffff;
+  --cexie-card-foreground: #1f2937;
+  --cexie-border: #d7e0ea;
+  --cexie-divider: #e6edf4;
+  --cexie-primary: #2d5f93;
+  --cexie-primary-strong: #21496f;
+  --cexie-primary-soft: #dde8f3;
+  --cexie-primary-surface: #edf4fb;
+  --cexie-primary-foreground: #ffffff;
+  --cexie-success: #2f7c63;
+  --cexie-warning: #a56b1f;
+  --cexie-error: #b14f4f;
+  --cexie-radius-sm: 8px;
+  --cexie-radius-md: 12px;
+  --cexie-shadow-1: 0 4px 12px rgba(18, 37, 56, 0.04);
+  --cexie-spacing-2: 8px;
+  --cexie-spacing-4: 16px;
+  --cexie-spacing-6: 24px;
+}
+
+page {
+  font-family: var(--cexie-font-sans);
+  background-color: var(--cexie-background);
+  color: var(--cexie-foreground);
+}
+
+html,
+body,
+#app,
+uni-app,
+uni-page,
+uni-page-wrapper,
+uni-page-body {
+  min-height: 100%;
+}
+
+body {
+  background-color: var(--cexie-background);
+}
+
+html,
+body,
+uni-app {
+  touch-action: manipulation;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .uni-input-input,
+  .uni-textarea-textarea {
+    font-size: 16px !important;
+  }
+}
+
+.cexie-container {
+  width: 100%;
+  max-width: 960rpx;
+  margin: 0 auto;
+  padding: 24rpx 28rpx;
+  box-sizing: border-box;
+}
+
+.cexie-card {
+  background: var(--cexie-card);
+  border: 1px solid var(--cexie-border);
+  border-radius: var(--cexie-radius-md);
+  box-shadow: var(--cexie-shadow-1);
+  padding: 24rpx;
+}
+
+.cexie-title {
+  font-size: 36rpx;
+  font-weight: 700;
+}
+
+.cexie-subtitle {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: var(--cexie-muted-foreground);
+}
+
+.cexie-btn-primary {
+  background: var(--cexie-primary);
+  color: var(--cexie-primary-foreground);
+  border-radius: var(--cexie-radius-sm);
+}
+
+.cexie-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cexie-title-sm { font-size: 30rpx; }
+.cexie-title-md { font-size: 32rpx; }
+.cexie-spacer-10 { height: 10rpx; }
+.cexie-spacer-12 { height: 12rpx; }
+.cexie-spacer-14 { height: 14rpx; }
+.cexie-spacer-16 { height: 16rpx; }
+.cexie-spacer-18 { height: 18rpx; }
+.cexie-spacer-20 { height: 20rpx; }
+.cexie-spacer-24 { height: 24rpx; }

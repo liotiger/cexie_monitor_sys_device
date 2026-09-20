@@ -1,0 +1,280 @@
+{
+  "project": {
+    "name": "测斜监测移动端",
+    "generationTree": {
+      "root": "cexie-mobile-app-design",
+      "children": [
+        {
+          "name": "colors_and_type.css",
+          "type": "file",
+          "role": "design-tokens"
+        },
+        {
+          "name": "partials",
+          "type": "directory",
+          "children": [
+            {
+              "name": "project-shell.html",
+              "type": "file",
+              "role": "shared-shell-reference"
+            }
+          ]
+        },
+        {
+          "name": "pages",
+          "type": "directory",
+          "children": [
+            {
+              "name": "login.html",
+              "title": "登录",
+              "businessScenario": "auth-entry",
+              "tabPage": false
+            },
+            {
+              "name": "dashboard.html",
+              "title": "首页",
+              "businessScenario": "overview-hub",
+              "tabPage": true
+            },
+            {
+              "name": "projects.html",
+              "title": "工程",
+              "businessScenario": "project-browse",
+              "tabPage": true
+            },
+            {
+              "name": "project-detail.html",
+              "title": "工程详情",
+              "businessScenario": "project-detail",
+              "tabPage": false
+            },
+            {
+              "name": "hole-monitor.html",
+              "title": "测孔监测",
+              "businessScenario": "hole-monitor",
+              "tabPage": false
+            },
+            {
+              "name": "trend-analysis.html",
+              "title": "趋势分析",
+              "businessScenario": "trend-analysis",
+              "tabPage": true,
+              "chartsRequired": true
+            },
+            {
+              "name": "reports.html",
+              "title": "报表中心",
+              "businessScenario": "report-center",
+              "tabPage": true
+            },
+            {
+              "name": "profile.html",
+              "title": "我的",
+              "businessScenario": "profile",
+              "tabPage": true
+            }
+          ]
+        },
+        {
+          "name": "orchestration-summary.json",
+          "type": "file",
+          "role": "project-summary"
+        }
+      ]
+    }
+  },
+  "deviceType": "mobile",
+  "language": "zh-CN",
+  "designSource": {
+    "operatingMode": "free-explore"
+  },
+  "brandPrefix": "cexie",
+  "themeMode": "light",
+  "designRead": [
+    "frontend/src/views/Login.vue",
+    "frontend/src/views/Dashboard.vue",
+    "frontend/src/views/Projects.vue",
+    "frontend/src/views/ProjectDetail.vue",
+    "frontend/src/views/Holes.vue",
+    "frontend/src/views/ResultsTrend.vue",
+    "frontend/src/views/Reports.vue",
+    "frontend/src/layouts/MainLayout.vue",
+    "frontend/src/composables/useHoleMonitorActions.js"
+  ],
+  "designDials": {
+    "tone": "专业克制",
+    "informationDensity": "medium-high",
+    "surfaceStyle": "light-card",
+    "alertPriority": "high",
+    "motionIntensity": 1,
+    "radiusScale": "restrained",
+    "navigationPattern": "top-bar-plus-bottom-tab",
+    "chartEmphasis": "depth-displacement",
+    "mobileStrategy": "overview-first"
+  },
+  "pages": [
+    {
+      "path": "pages/login.html",
+      "title": "登录",
+      "businessScenario": "auth-entry",
+      "domIds": [
+        "login-submit"
+      ],
+      "tabPage": false,
+      "miniProgramStyle": false,
+      "chartsRequired": false
+    },
+    {
+      "path": "pages/dashboard.html",
+      "title": "首页",
+      "businessScenario": "overview-hub",
+      "domIds": [
+        "home-enter-projects",
+        "nav-projects",
+        "nav-trends",
+        "nav-reports",
+        "nav-profile"
+      ],
+      "tabPage": true,
+      "miniProgramStyle": false,
+      "chartsRequired": false
+    },
+    {
+      "path": "pages/projects.html",
+      "title": "工程",
+      "businessScenario": "project-browse",
+      "domIds": [
+        "projects-open-detail",
+        "nav-home",
+        "nav-trends",
+        "nav-reports",
+        "nav-profile"
+      ],
+      "tabPage": true,
+      "miniProgramStyle": false,
+      "chartsRequired": false
+    },
+    {
+      "path": "pages/project-detail.html",
+      "title": "工程详情",
+      "businessScenario": "project-detail",
+      "domIds": [
+        "detail-back-projects",
+        "detail-open-hole",
+        "detail-open-trends"
+      ],
+      "tabPage": false,
+      "miniProgramStyle": false,
+      "chartsRequired": false
+    },
+    {
+      "path": "pages/hole-monitor.html",
+      "title": "测孔监测",
+      "businessScenario": "hole-monitor",
+      "domIds": [
+        "hole-back-detail",
+        "hole-open-trend",
+        "hole-open-task-log"
+      ],
+      "tabPage": false,
+      "miniProgramStyle": false,
+      "chartsRequired": false
+    },
+    {
+      "path": "pages/trend-analysis.html",
+      "title": "趋势分析",
+      "businessScenario": "trend-analysis",
+      "domIds": [
+        "trend-open-reports",
+        "nav-home",
+        "nav-projects",
+        "nav-reports",
+        "nav-profile"
+      ],
+      "tabPage": true,
+      "miniProgramStyle": false,
+      "chartsRequired": true
+    },
+    {
+      "path": "pages/reports.html",
+      "title": "报表中心",
+      "businessScenario": "report-center",
+      "domIds": [
+        "reports-open-profile",
+        "nav-home",
+        "nav-projects",
+        "nav-trends",
+        "nav-profile"
+      ],
+      "tabPage": true,
+      "miniProgramStyle": false,
+      "chartsRequired": false
+    },
+    {
+      "path": "pages/profile.html",
+      "title": "我的",
+      "businessScenario": "profile",
+      "domIds": [
+        "nav-home",
+        "nav-projects",
+        "nav-trends",
+        "nav-reports"
+      ],
+      "tabPage": true,
+      "miniProgramStyle": false,
+      "chartsRequired": false
+    }
+  ],
+  "wiringPlan": [
+    {
+      "from": "pages/dashboard.html#home-enter-projects",
+      "to": "pages/projects.html"
+    },
+    {
+      "from": "pages/projects.html#projects-open-detail",
+      "to": "pages/project-detail.html"
+    },
+    {
+      "from": "pages/project-detail.html#detail-open-hole",
+      "to": "pages/hole-monitor.html"
+    },
+    {
+      "from": "pages/project-detail.html#detail-open-trends",
+      "to": "pages/trend-analysis.html"
+    },
+    {
+      "from": "pages/hole-monitor.html#hole-open-trend",
+      "to": "pages/trend-analysis.html"
+    },
+    {
+      "from": "pages/trend-analysis.html#trend-open-reports",
+      "to": "pages/reports.html"
+    },
+    {
+      "from": "pages/reports.html#reports-open-profile",
+      "to": "pages/profile.html"
+    }
+  ],
+  "hiddenInteractionPlan": [
+    {
+      "target": "dashboard",
+      "pattern": "project-switch-sheet",
+      "description": "项目切换区以抽屉式入口表达，可在主流程中接入真实切换逻辑。"
+    },
+    {
+      "target": "project-detail",
+      "pattern": "segmented-content",
+      "description": "概况、测孔、成员采用分段切换，保留移动端单页层级而不拆成多表格页面。"
+    },
+    {
+      "target": "hole-monitor",
+      "pattern": "task-log-sheet",
+      "description": "任务记录入口作为底部弹层触发位，满足现场快速查看而不离开主任务页。"
+    },
+    {
+      "target": "trend-analysis",
+      "pattern": "filter-drawer",
+      "description": "工程、测孔、时间筛选保留抽屉式容器语义，便于后续接入 uniapp 条件筛选组件。"
+    }
+  ]
+}

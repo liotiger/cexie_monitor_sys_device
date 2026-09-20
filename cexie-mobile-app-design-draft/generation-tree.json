@@ -1,0 +1,56 @@
+{
+  "root": "cexie-mobile-app-design-draft",
+  "children": [
+    {
+      "name": "colors_and_type-draft.css",
+      "type": "file",
+      "role": "design-tokens"
+    },
+    {
+      "name": "partials",
+      "type": "directory",
+      "children": [
+        {
+          "name": "project-shell.html",
+          "type": "file",
+          "role": "shared-shell-reference"
+        }
+      ]
+    },
+    {
+      "name": "pages",
+      "type": "directory",
+      "children": [
+        {
+          "name": "login.html",
+          "title": "登录",
+          "businessScenario": "auth-entry",
+          "tabPage": false
+        },
+        {
+          "name": "projects.html",
+          "title": "工程",
+          "businessScenario": "project-browse",
+          "tabPage": true
+        },
+        {
+          "name": "devices.html",
+          "title": "设备",
+          "businessScenario": "device-debug-console",
+          "tabPage": true
+        },
+        {
+          "name": "profile.html",
+          "title": "我的",
+          "businessScenario": "engineer-profile",
+          "tabPage": true
+        }
+      ]
+    },
+    {
+      "name": "orchestration-summary.json",
+      "type": "file",
+      "role": "project-summary"
+    }
+  ]
+}

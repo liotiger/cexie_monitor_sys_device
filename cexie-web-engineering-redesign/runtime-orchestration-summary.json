@@ -1,0 +1,1157 @@
+{
+  "project": {
+    "name": "测斜监测网页端工程化改版",
+    "resolvedLane": "free_exploration",
+    "selectedIntentWorkflowRead": true,
+    "intentProfile": {
+      "caseFamily": "free_exploration",
+      "surface": "web-admin-console",
+      "complexity": "stateful-free-fast",
+      "routingReason": "现有仓库存在完整网页端业务代码，但无对应网页端设计项目；本次需求为面向工程师操作习惯的新桌面端对比方案，重点闭环为工程管理进入测孔列表后执行绑定设备、打开工作台与开始监测。"
+    },
+    "contextRequirementsLoaded": [
+      {
+        "path": "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/page-rendering-quality-gate.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/design-artifact-validation.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "delivery-quality/delivery-evidence-contract.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      },
+      {
+        "path": "visual-experience/visual-experience-guidelines.md",
+        "readStatus": "loaded",
+        "bodyRead": true
+      }
+    ],
+    "contextReadScope": {
+      "mainAgent": {
+        "forbiddenReads": [
+          "other intent-workflows/**",
+          "Sub-Agent implementation files before dispatch"
+        ]
+      },
+      "pageSubAgent": {
+        "allowedReads": [
+          "current lane page runtime guide",
+          "current lane dispatch contract excerpt",
+          "current Page Packet",
+          "supplementaryReads[] only"
+        ],
+        "forbiddenReads": [
+          "SKILL.md full re-read",
+          "other intent-workflows/**",
+          "full runtime-orchestration-summary.json unless explicitly sliced"
+        ]
+      },
+      "readScopeLedgerWriter": "shared-runtime/deterministic-tooling/build-page-dispatch-manifest.mjs"
+    },
+    "validationRunDiscipline": {
+      "maxFullValidationRuns": 2,
+      "softWarningsTriggerRepair": false,
+      "blockingRepairMode": "targeted-once",
+      "forbiddenRepairTriggers": [
+        "soft-warning-only",
+        "provenance-warning-only",
+        "style-warning-only"
+      ]
+    },
+    "lowValueCallWatchdog": {
+      "applies": true,
+      "noProgressSignals": [
+        "no_tool_call",
+        "no_artifact_diff",
+        "no_structured_decision"
+      ],
+      "noProgressNextAction": "enter_readiness_or_blocked_summary"
+    },
+    "deviceType": "desktop",
+    "themeMode": "light",
+    "brandPrefix": "cexieweb",
+    "cssPreflightEvidence": {
+      "applies": true,
+      "status": "passed",
+      "command": "node c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\colors_and_type.css d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\.preflight\\preflight.html --title='Preflight' --lang=zh-CN --prefix=cexieweb",
+      "brandPrefix": "cexieweb",
+      "checks": {
+        "themeVars": "present",
+        "semanticTokenFallback": "present",
+        "themeInline": "present",
+        "tailwindCdn": "present",
+        "htmlClass": "present",
+        "semanticMappings": "resolved"
+      },
+      "retryCount": 0,
+      "blockingReason": null
+    },
+    "styleContinuityAnchors": [
+      "深色工程控制台外壳与浅色内容主工作区并置",
+      "单一蓝色主色用于主操作与关键选中态",
+      "左侧工程导航、顶部命令栏、主内容数据工作区三段式布局",
+      "高密度表格与卡片混排，但主操作始终收口在右侧动作列或顶部指令区",
+      "页脚统一保留系统版本、数据时间与帮助入口"
+    ],
+    "sharedProjectShellContract": {
+      "shellType": "desktop-app-shell",
+      "regions": [
+        "left-sidebar",
+        "top-command-bar",
+        "context-summary-strip",
+        "primary-workspace",
+        "footer-meta"
+      ],
+      "primaryColorDiscipline": "single-primary-blue",
+      "radiusScale": "8-12-16",
+      "surfaceModel": "dark-shell-light-workspace",
+      "ctaStyle": "solid-primary-and-outline-secondary"
+    },
+    "pageCompletenessGate": {
+      "expectedPages": [
+        "projects-hub",
+        "hole-console",
+        "bind-device",
+        "workbench",
+        "monitoring-task"
+      ],
+      "requiredStates": [
+        "工程总览与筛选",
+        "测孔列表与任务状态",
+        "绑定设备抽屉",
+        "工作台指令面板",
+        "开始监测任务反馈"
+      ],
+      "requiredInteractions": [
+        "project-enter-hole-console",
+        "open-bind-device",
+        "open-workbench",
+        "open-monitoring-task",
+        "bind-confirm",
+        "task-back-console"
+      ],
+      "requiredNavigation": [
+        "left-sidebar",
+        "back-to-projects",
+        "footer-help"
+      ],
+      "missingAllowed": []
+    },
+    "dispatchPreflightManifest": [
+      {
+        "recorded_at": "2026-07-27T16:20:51.941Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "FreePagePacket",
+        "laneContract": {
+          "resolvedLane": "free_exploration",
+          "packetType": "FreePagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-page-free-exploration/dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+        "nodeId": "page-projects-hub",
+        "htmlSrc": "pages/projects-hub.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/projects-hub.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/projects-hub.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\" --node-id=\"page-projects-hub\" --html-src=\"pages/projects-hub.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\colors_and_type.css",
+        "htmlFilePath": "d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\pages\\projects-hub.html",
+        "brandPrefix": "cexieweb",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\colors_and_type.css\" \"d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\pages\\projects-hub.html\" --title=\"工程管理\" --lang=\"zh-CN\" --prefix=\"cexieweb\"",
+        "headFillMode": "skeleton-first",
+        "viewportMode": null,
+        "completionSchemaExpected": "compact",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cexie-web-engineering-redesign.design": "4a07be2555ac33eb9047d453fa97e43377cb976a6c02dd1cc12e5d38ef2fabe8"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-page-free-exploration/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-07-27T16:20:51.941Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "FreePagePacket",
+        "laneContract": {
+          "resolvedLane": "free_exploration",
+          "packetType": "FreePagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-page-free-exploration/dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+        "nodeId": "page-hole-console",
+        "htmlSrc": "pages/hole-console.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/hole-console.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/hole-console.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\" --node-id=\"page-hole-console\" --html-src=\"pages/hole-console.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\colors_and_type.css",
+        "htmlFilePath": "d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\pages\\hole-console.html",
+        "brandPrefix": "cexieweb",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": "node \"c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs\" \"d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\colors_and_type.css\" \"d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\pages\\hole-console.html\" --title=\"测孔总控\" --lang=\"zh-CN\" --prefix=\"cexieweb\"",
+        "headFillMode": "skeleton-first",
+        "viewportMode": null,
+        "completionSchemaExpected": "compact",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cexie-web-engineering-redesign.design": "4a07be2555ac33eb9047d453fa97e43377cb976a6c02dd1cc12e5d38ef2fabe8"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-page-free-exploration/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-07-27T16:20:51.941Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "FreePagePacket",
+        "laneContract": {
+          "resolvedLane": "free_exploration",
+          "packetType": "FreePagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-page-free-exploration/dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+        "nodeId": "page-bind-device",
+        "htmlSrc": "pages/bind-device.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/bind-device.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/bind-device.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\" --node-id=\"page-bind-device\" --html-src=\"pages/bind-device.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\colors_and_type.css",
+        "htmlFilePath": "d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\pages\\bind-device.html",
+        "brandPrefix": "cexieweb",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": null,
+        "headFillMode": "skeleton-first",
+        "viewportMode": null,
+        "completionSchemaExpected": "compact",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cexie-web-engineering-redesign.design": "4a07be2555ac33eb9047d453fa97e43377cb976a6c02dd1cc12e5d38ef2fabe8"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-page-free-exploration/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-07-27T16:20:51.941Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "FreePagePacket",
+        "laneContract": {
+          "resolvedLane": "free_exploration",
+          "packetType": "FreePagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-page-free-exploration/dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+        "nodeId": "page-workbench",
+        "htmlSrc": "pages/workbench.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/workbench.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/workbench.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\" --node-id=\"page-workbench\" --html-src=\"pages/workbench.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\colors_and_type.css",
+        "htmlFilePath": "d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\pages\\workbench.html",
+        "brandPrefix": "cexieweb",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": null,
+        "headFillMode": "skeleton-first",
+        "viewportMode": null,
+        "completionSchemaExpected": "compact",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cexie-web-engineering-redesign.design": "4a07be2555ac33eb9047d453fa97e43377cb976a6c02dd1cc12e5d38ef2fabe8"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-page-free-exploration/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      },
+      {
+        "recorded_at": "2026-07-27T16:20:51.941Z",
+        "generatedBy": "build-page-dispatch-manifest.mjs",
+        "packetType": "FreePagePacket",
+        "laneContract": {
+          "resolvedLane": "free_exploration",
+          "packetType": "FreePagePacket",
+          "pageRuntimeGuide": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+          "dispatchContract": "intent-workflows/intent-page-free-exploration/dispatch-contract.md"
+        },
+        "taskLinePresent": true,
+        "outputPathPresent": true,
+        "sharedTemplate": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+        "nodeId": "page-monitoring-task",
+        "htmlSrc": "pages/monitoring-task.html",
+        "supplementaryReads": [],
+        "allowedWritePaths": [
+          "pages/monitoring-task.html",
+          "assets/"
+        ],
+        "forbiddenWriteRoots": [
+          "*.design",
+          "runtime-orchestration-summary.json",
+          "validation-report.json",
+          "finish-readiness-report.json",
+          "restore-contract-report.json",
+          "page-generation-summary.json"
+        ],
+        "toolPolicy": {
+          "todoWriteAllowed": false,
+          "validationScriptsAllowed": false,
+          "previewAllowed": false,
+          "helperScriptsAllowed": false,
+          "designFileWriteAllowed": false,
+          "allowedWritePaths": [
+            "pages/monitoring-task.html",
+            "assets/"
+          ]
+        },
+        "skillRuntime": {
+          "skillDir": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design",
+          "deterministicToolDir": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling",
+          "toolPaths": {
+            "applyHtmlHeadContract": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\apply-html-head-contract.mjs",
+            "recordDispatchCompletion": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs",
+            "buildPageDispatchManifest": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\build-page-dispatch-manifest.mjs",
+            "validateDesignWorkspace": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-design-workspace.mjs",
+            "validateFinishReadiness": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-finish-readiness.mjs",
+            "validateRestoreContract": "c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\validate-restore-contract.mjs"
+          },
+          "requiredForPageSubAgent": [
+            "applyHtmlHeadContract",
+            "recordDispatchCompletion"
+          ],
+          "pathInjection": "absolute",
+          "pathContract": "Do not use {SKILL_DIR} placeholders inside Page Sub-Agent packets; use toolPaths.* absolute paths.",
+          "commandTemplates": {
+            "recordDispatchCompletion": "node \"c:\\Users\\60933\\.trae\\builtin\\design\\thetis\\skills\\solo-design\\shared-runtime\\deterministic-tooling\\record-dispatch-completion.mjs\" \"d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\" --node-id=\"page-monitoring-task\" --html-src=\"pages/monitoring-task.html\" --status=completed --changed-files=<comma-separated-project-relative-files> --trace-digest=<main-agent-runtime-trace-digest> --tool-ledger-json=<tool-ledger-json-or-file>"
+          }
+        },
+        "cssFilePath": "d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\colors_and_type.css",
+        "htmlFilePath": "d:\\project\\2026\\cexie-monitor-sys\\cexie-web-engineering-redesign\\pages\\monitoring-task.html",
+        "brandPrefix": "cexieweb",
+        "aestheticsMode": "free-explore",
+        "toolDisciplineBlockPresent": true,
+        "fillHtmlHeadCommand": null,
+        "headFillMode": "skeleton-first",
+        "viewportMode": null,
+        "completionSchemaExpected": "compact",
+        "restoreFields": null,
+        "restoreContractStatus": null,
+        "restoreCompactPacket": null,
+        "deterministicCommands": null,
+        "sourceAuthorityLock": null,
+        "preDispatchFileHashes": {
+          "cexie-web-engineering-redesign.design": "4a07be2555ac33eb9047d453fa97e43377cb976a6c02dd1cc12e5d38ef2fabe8"
+        },
+        "contextPreflight": {
+          "workflowPath": "intent-workflows/intent-page-free-exploration/INTENT_WORKFLOW.md",
+          "requiredContextFiles": [
+            "shared-runtime/runtime-boundaries/lane-runtime-contracts.md",
+            "shared-runtime/agent-dispatch-runtime/lane-dispatch-index.md",
+            "delivery-quality/page-rendering-quality-gate.md",
+            "delivery-quality/design-artifact-validation.md",
+            "delivery-quality/delivery-evidence-contract.md",
+            "visual-experience/visual-experience-guidelines.md"
+          ],
+          "optionalContextFiles": [],
+          "passed": true
+        },
+        "pageSliceOnly": true,
+        "requiredFieldsPresent": true,
+        "missingFields": [],
+        "fillHtmlHeadCommandValid": true,
+        "mobileNavigation": {
+          "required": false,
+          "appliesToThisPage": false,
+          "canonicalHtmlIncluded": false,
+          "missingFields": []
+        },
+        "persistedToSummary": true,
+        "taskQueryAudited": false,
+        "proofSource": "summary-only",
+        "largeWorkflowFilesInTaskQuery": null
+      }
+    ],
+    "validationHistory": [
+      {
+        "reportPath": "validation-report.json",
+        "reportHash": "ad291c91a3694582b2f695d17978a910fbc139a0af5a5eb88843a41183c3b1a2",
+        "checkedAt": "2026-07-27T16:34:28.344Z",
+        "success": false,
+        "exitCode": 1,
+        "renderBlockingErrorCount": 1,
+        "repairPlanHints": [
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body",
+          "hardcoded-color-in-body"
+        ],
+        "errorSignatures": [
+          {
+            "errorClass": "artifact-readiness",
+            "normalized": "[design-file] Validation failed for .design file batch: ======================================== [FAIL] Validation failed ---------------------------------------- Found 2 issues: 1. [data[4].devMetadata.interactions[0].domId] domId \"task-back-console\" is registered in .design but not found in HTML file \"pages/monitoring-task.html\". Fix: add data-dom-id=\"task-back-console\" to the corresponding element in the HTML file, or remove this interaction entry if the link no longer exists. 2. [data[4].devMetadata.interactions[1].domId] domId \"task-open-workbench\" is registered in .design but not found in HTML file \"pages/monitoring-task.html\". Fix: add data-dom-id=\"task-open-workbench\" to the corresponding element in the HTML file, or remove this interaction entry if the link no longer exists. ========================================",
+            "signature": "756cac4af234dfd9fdf6c21e459a7540b1645ae0f8362c93eabcf4a2e1edb3df"
+          }
+        ],
+        "terminalState": null
+      }
+    ],
+    "wiringRegistrationEvidence": {
+      "expectedDomIds": [],
+      "allExpectedDomIdsRegistered": false,
+      "missingDomIds": []
+    },
+    "readScopeLedger": [
+      {
+        "actor": "page-sub-agent",
+        "lane": "free_exploration",
+        "path": "intent-workflows/intent-page-free-exploration/free-exploration-page-runtime.md",
+        "reason": "page runtime guide",
+        "scopeClass": "page-runtime",
+        "declaredBeforeRead": true,
+        "recordedAt": "2026-07-27T16:20:51.941Z",
+        "nodeId": "page-projects-hub",
+        "htmlSrc": "pages/projects-hub.html"
+      },
+      {
+        "actor": "page-sub-agent",
+        "lane": "free_exploration",
+        "path": "intent-workflows/intent-page-free-exploration/dispatch-contract.md",
+        "reason": "dispatch contract",
+        "scopeClass": "dispatch-contract",
+        "declaredBeforeRead": true,
+        "recordedAt": "2026-07-27T16:20:51.941Z",
+        "nodeId": "page-projects-hub",
+        "htmlSrc": "pages/projects-hub.html"
+      }
+    ],
+    "expectedDispatches": [
+      {
+        "nodeId": "page-projects-hub",
+        "pageId": "page-projects-hub",
+        "targetPageId": "page-projects-hub",
+        "htmlSrc": "pages/projects-hub.html",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/projects-hub.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "dd2564b8fcf4f6be31723fad368290ca66e25140d4a10e04c1f2dc68d306471d",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-27T16:34:20.644Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-hole-console",
+        "pageId": "page-hole-console",
+        "targetPageId": "page-hole-console",
+        "htmlSrc": "pages/hole-console.html",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/hole-console.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "dd2564b8fcf4f6be31723fad368290ca66e25140d4a10e04c1f2dc68d306471d",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-27T16:34:20.753Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-bind-device",
+        "pageId": "page-bind-device",
+        "targetPageId": "page-bind-device",
+        "htmlSrc": "pages/bind-device.html",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/bind-device.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "dd2564b8fcf4f6be31723fad368290ca66e25140d4a10e04c1f2dc68d306471d",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-27T16:34:20.850Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-workbench",
+        "pageId": "page-workbench",
+        "targetPageId": "page-workbench",
+        "htmlSrc": "pages/workbench.html",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/workbench.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "dd2564b8fcf4f6be31723fad368290ca66e25140d4a10e04c1f2dc68d306471d",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-27T16:34:20.945Z",
+        "source": "record-dispatch-completion.mjs"
+      },
+      {
+        "nodeId": "page-monitoring-task",
+        "pageId": "page-monitoring-task",
+        "targetPageId": "page-monitoring-task",
+        "htmlSrc": "pages/monitoring-task.html",
+        "packetType": "FreePagePacket",
+        "status": "completed",
+        "changedFiles": [
+          "pages/monitoring-task.html"
+        ],
+        "toolCallLedger": {
+          "source": "main-agent-runtime-trace",
+          "traceDigest": "dd2564b8fcf4f6be31723fad368290ca66e25140d4a10e04c1f2dc68d306471d",
+          "todoWriteCalls": 0,
+          "previewCalls": 0,
+          "validationScriptCalls": 0,
+          "helperScriptWrites": 0
+        },
+        "recordedAt": "2026-07-27T16:34:21.042Z",
+        "source": "record-dispatch-completion.mjs"
+      }
+    ],
+    "mainAgentPostDispatchMutations": [],
+    "validationRepairLedger": [
+      {
+        "failedReportPath": "validation-report.json",
+        "failedReportHash": "ad291c91a3694582b2f695d17978a910fbc139a0af5a5eb88843a41183c3b1a2",
+        "repairWorkflowReadPath": "intent-workflows/intent-project-mutation/main-agent-repair-workflow.md",
+        "repairStartedAt": "2026-07-27T16:34:53.042Z",
+        "repairEntryStatus": "started-awaiting-owner-batch-repair",
+        "ownerTriage": [
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "bind-device.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "hole-console.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "monitoring-task.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "projects-hub.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          },
+          {
+            "owner": "sub-agent",
+            "errorClass": "hardcoded-color-in-body",
+            "affectedFiles": [
+              "workbench.html"
+            ],
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once"
+          }
+        ],
+        "repairPlanHints": [
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "bind-device.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "hole-console.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "monitoring-task.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "projects-hub.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          },
+          {
+            "errorClass": "hardcoded-color-in-body",
+            "owner": "sub-agent",
+            "repairScope": "targeted-token-replace",
+            "strategy": "targeted_token_replace_once",
+            "affectedFiles": [
+              "workbench.html"
+            ],
+            "repairReportPath": null,
+            "repairAlreadyAttempted": false,
+            "allowSourceRead": "no-full-html-read",
+            "maxValidationRuns": 2
+          }
+        ],
+        "repairActions": [],
+        "revalidationReportPath": null,
+        "revalidationReportHash": null,
+        "revalidationSuccess": null,
+        "blockedReason": null
+      }
+    ],
+    "repairEntryEvidence": [
+      {
+        "failedReportPath": "validation-report.json",
+        "failedReportHash": "ad291c91a3694582b2f695d17978a910fbc139a0af5a5eb88843a41183c3b1a2",
+        "repairWorkflowReadPath": "intent-workflows/intent-project-mutation/main-agent-repair-workflow.md",
+        "repairStartedAt": "2026-07-27T16:34:53.042Z",
+        "ledgerIndex": 0,
+        "ownerTriageCount": 5,
+        "repairActionCount": 0,
+        "revalidationReportPath": null,
+        "revalidationReportHash": null,
+        "revalidationSuccess": null
+      }
+    ]
+  },
+  "deviceType": "desktop",
+  "language": "zh-CN",
+  "designSource": {
+    "operatingMode": "free-explore"
+  },
+  "designRead": [
+    "frontend/src/router/index.js",
+    "frontend/src/layouts/MainLayout.vue",
+    "frontend/src/views/Dashboard.vue",
+    "frontend/src/views/Projects.vue",
+    "frontend/src/views/ProjectDetail.vue",
+    "frontend/src/views/Holes.vue",
+    "frontend/src/components/UpperDeviceWorkbench.vue",
+    "backend/config/routes.js",
+    "HTTPAPI.md"
+  ],
+  "designDials": {
+    "tone": "专业克制",
+    "informationDensity": "high",
+    "surfaceStyle": "dark-shell-light-data-surface",
+    "alertPriority": "high",
+    "motionIntensity": 1,
+    "radiusScale": "restrained",
+    "navigationPattern": "left-sidebar-plus-top-command-bar",
+    "chartEmphasis": "not-primary",
+    "desktopStrategy": "operations-first"
+  },
+  "pages": [
+    {
+      "nodeId": "page-projects-hub",
+      "htmlSrc": "pages/projects-hub.html",
+      "htmlFilePath": "pages/projects-hub.html",
+      "path": "pages/projects-hub.html",
+      "title": "工程管理",
+      "businessScenario": "project-browse-and-enter",
+      "domIds": [
+        "project-enter-hole-console"
+      ],
+      "pageType": "task-driven",
+      "qualityRisks": [
+        "app-shell",
+        "dense-summary-strip",
+        "card-table-hybrid"
+      ]
+    },
+    {
+      "nodeId": "page-hole-console",
+      "htmlSrc": "pages/hole-console.html",
+      "htmlFilePath": "pages/hole-console.html",
+      "path": "pages/hole-console.html",
+      "title": "测孔总控",
+      "businessScenario": "hole-list-and-operations",
+      "domIds": [
+        "back-to-projects",
+        "open-bind-device",
+        "open-workbench",
+        "open-monitoring-task"
+      ],
+      "pageType": "information-dense",
+      "qualityRisks": [
+        "app-shell",
+        "dense-table",
+        "action-column",
+        "first-screen-command-density"
+      ],
+      "stateGroupId": "hole-console-ops",
+      "stateRole": "base"
+    },
+    {
+      "nodeId": "page-bind-device",
+      "htmlSrc": "pages/bind-device.html",
+      "htmlFilePath": "pages/bind-device.html",
+      "path": "pages/bind-device.html",
+      "title": "绑定设备",
+      "businessScenario": "bind-upper-device",
+      "domIds": [
+        "bind-cancel",
+        "bind-confirm"
+      ],
+      "pageType": "task-driven",
+      "qualityRisks": [
+        "app-shell",
+        "drawer-overlay"
+      ],
+      "stateGroupId": "hole-console-ops",
+      "stateRole": "derived",
+      "derivedFromHtmlSrc": "pages/hole-console.html"
+    },
+    {
+      "nodeId": "page-workbench",
+      "htmlSrc": "pages/workbench.html",
+      "htmlFilePath": "pages/workbench.html",
+      "path": "pages/workbench.html",
+      "title": "设备工作台",
+      "businessScenario": "device-workbench",
+      "domIds": [
+        "workbench-back-console",
+        "workbench-create-home-move",
+        "workbench-create-bottom-test"
+      ],
+      "pageType": "information-dense",
+      "qualityRisks": [
+        "app-shell",
+        "overlay-panel",
+        "dense-log-list"
+      ],
+      "stateGroupId": "hole-console-ops",
+      "stateRole": "derived",
+      "derivedFromHtmlSrc": "pages/hole-console.html"
+    },
+    {
+      "nodeId": "page-monitoring-task",
+      "htmlSrc": "pages/monitoring-task.html",
+      "htmlFilePath": "pages/monitoring-task.html",
+      "path": "pages/monitoring-task.html",
+      "title": "监测任务",
+      "businessScenario": "monitor-task-created",
+      "domIds": [
+        "task-back-console",
+        "task-open-workbench"
+      ],
+      "pageType": "task-driven",
+      "qualityRisks": [
+        "app-shell",
+        "status-timeline",
+        "feedback-priority"
+      ],
+      "stateGroupId": "hole-console-ops",
+      "stateRole": "derived",
+      "derivedFromHtmlSrc": "pages/hole-console.html"
+    }
+  ],
+  "wiringPlan": [
+    {
+      "from": "pages/projects-hub.html#project-enter-hole-console",
+      "to": "pages/hole-console.html"
+    },
+    {
+      "from": "pages/hole-console.html#open-bind-device",
+      "to": "pages/bind-device.html"
+    },
+    {
+      "from": "pages/hole-console.html#open-workbench",
+      "to": "pages/workbench.html"
+    },
+    {
+      "from": "pages/hole-console.html#open-monitoring-task",
+      "to": "pages/monitoring-task.html"
+    },
+    {
+      "from": "pages/bind-device.html#bind-cancel",
+      "to": "pages/hole-console.html"
+    },
+    {
+      "from": "pages/bind-device.html#bind-confirm",
+      "to": "pages/monitoring-task.html"
+    },
+    {
+      "from": "pages/workbench.html#workbench-back-console",
+      "to": "pages/hole-console.html"
+    },
+    {
+      "from": "pages/monitoring-task.html#task-back-console",
+      "to": "pages/hole-console.html"
+    },
+    {
+      "from": "pages/monitoring-task.html#task-open-workbench",
+      "to": "pages/workbench.html"
+    }
+  ]
+}

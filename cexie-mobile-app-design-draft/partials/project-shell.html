@@ -1,0 +1,84 @@
+<div class="mx-auto min-h-screen max-w-md bg-[var(--cexie-background)] text-[var(--cexie-foreground)] sm:max-w-lg">
+  <header class="sticky top-0 z-20 border-b border-[var(--cexie-border)] bg-[var(--cexie-background)]/96 px-4 py-3 backdrop-blur">
+    <div class="flex items-center justify-between gap-3">
+      <div class="min-w-0">
+        <p class="cexie-caption truncate text-[var(--cexie-muted-foreground)]">现场联调 / 当前工程</p>
+        <h1 class="cexie-h2 truncate">设备调试工作台壳层</h1>
+      </div>
+      <button class="inline-flex h-9 items-center justify-center rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] px-3 text-[13px] font-medium text-[var(--cexie-primary)]">
+        <i data-lucide="refresh-cw" class="mr-1.5 h-4 w-4"></i>
+        刷新
+      </button>
+    </div>
+  </header>
+
+  <main class="space-y-4 px-4 py-4 pb-24">
+    <section class="rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-4 shadow-[var(--cexie-shadow-1)]">
+      <div class="flex items-start justify-between gap-3">
+        <div class="min-w-0">
+          <p class="cexie-caption text-[var(--cexie-primary)]">工作模式</p>
+          <h2 class="cexie-h3 mt-1 truncate">现场调试 / 操作台模式</h2>
+        </div>
+        <span class="inline-flex h-7 items-center rounded-[var(--cexie-radius-xs)] bg-[var(--cexie-success-surface)] px-2.5 text-[12px] font-semibold text-[var(--cexie-success)]">在线稳定</span>
+      </div>
+      <div class="mt-4 grid grid-cols-3 gap-3">
+        <div class="min-w-0 border-r border-[var(--cexie-divider)] pr-2">
+          <p class="cexie-caption text-[var(--cexie-muted-foreground)]">在线上位机</p>
+          <p class="cexie-metric text-[var(--cexie-primary)]">06</p>
+        </div>
+        <div class="min-w-0 border-r border-[var(--cexie-divider)] px-2">
+          <p class="cexie-caption text-[var(--cexie-muted-foreground)]">最近回执</p>
+          <p class="cexie-metric text-[var(--cexie-primary)]">12s</p>
+        </div>
+        <div class="min-w-0 pl-2">
+          <p class="cexie-caption text-[var(--cexie-muted-foreground)]">待处理异常</p>
+          <p class="cexie-metric text-[var(--cexie-warning)]">03</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-4 shadow-[var(--cexie-shadow-1)]">
+      <div class="flex items-center justify-between gap-3">
+        <h2 class="cexie-h3 truncate">设备列表语义</h2>
+        <span class="text-[12px] font-medium text-[var(--cexie-muted-foreground)]">列表优先</span>
+      </div>
+      <div class="mt-3 divide-y divide-[var(--cexie-divider)]">
+        <article class="py-3 first:pt-0">
+          <div class="flex items-start justify-between gap-3">
+            <div class="min-w-0">
+              <p class="truncate text-[14px] font-semibold">CX-GW-07 / IMEI 861002340045781</p>
+              <p class="mt-1 text-[12px] leading-5 text-[var(--cexie-muted-foreground)]">串口正常，4G -71dBm，最后通讯 11:23:18，下挂 8 台下位机。</p>
+            </div>
+            <i data-lucide="chevron-right" class="mt-0.5 h-4 w-4 shrink-0 text-[var(--cexie-muted-foreground)]"></i>
+          </div>
+        </article>
+        <article class="py-3 last:pb-0">
+          <div class="flex items-start justify-between gap-3">
+            <div class="min-w-0">
+              <p class="truncate text-[14px] font-semibold">发送指令 / 快捷指令 / 调试回执</p>
+              <p class="mt-1 text-[12px] leading-5 text-[var(--cexie-muted-foreground)]">通过主操作区与日志区直接完成联调，不使用卡片内套卡片。</p>
+            </div>
+            <i data-lucide="terminal-square" class="mt-0.5 h-4 w-4 shrink-0 text-[var(--cexie-primary)]"></i>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <nav class="fixed bottom-0 left-0 right-0 border-t border-[var(--cexie-border)] bg-[var(--cexie-card)]/98 backdrop-blur">
+    <div class="mx-auto grid max-w-md grid-cols-3 px-3 py-2 sm:max-w-lg">
+      <button class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-muted-foreground)]">
+        <i data-lucide="folder-kanban" class="h-4 w-4"></i>
+        <span class="text-[11px] font-medium">工程</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-primary)]">
+        <i data-lucide="cpu" class="h-4 w-4"></i>
+        <span class="text-[11px] font-medium">设备</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-muted-foreground)]">
+        <i data-lucide="user-round" class="h-4 w-4"></i>
+        <span class="text-[11px] font-medium">我的</span>
+      </button>
+    </div>
+  </nav>
+</div>

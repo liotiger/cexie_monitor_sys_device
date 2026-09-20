@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>测孔总控</title>
+    <style id="theme-vars">
+:root {
+  --cexieweb-font-sans: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --cexieweb-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+
+  --cexieweb-background: #0f1722;
+  --cexieweb-foreground: #e7eef7;
+  --cexieweb-card: #162131;
+  --cexieweb-card-foreground: #e7eef7;
+  --cexieweb-popover: #182537;
+  --cexieweb-popover-foreground: #edf4ff;
+  --cexieweb-muted: #1d2b3d;
+  --cexieweb-muted-foreground: #8ea1b7;
+  --cexieweb-border: #233347;
+  --cexieweb-input: #24374d;
+  --cexieweb-ring: #4a8dc9;
+
+  --cexieweb-primary: #4a8dc9;
+  --cexieweb-primary-foreground: #f6fbff;
+  --cexieweb-primary-strong: #6ba7dc;
+  --cexieweb-primary-soft: #17314d;
+  --cexieweb-primary-surface: #13283f;
+
+  --cexieweb-state-success: #49b38a;
+  --cexieweb-state-success-surface: #132b24;
+  --cexieweb-state-warning: #d7a24d;
+  --cexieweb-state-warning-surface: #342713;
+  --cexieweb-state-error: #df7171;
+  --cexieweb-state-error-surface: #35191d;
+  --cexieweb-state-info: #68a7db;
+  --cexieweb-state-info-surface: #11263a;
+
+  --cexieweb-radius-sm: 8px;
+  --cexieweb-radius-md: 12px;
+  --cexieweb-radius-lg: 16px;
+
+  --cexieweb-shadow-1: 0 6px 18px rgba(3, 9, 18, 0.18);
+  --cexieweb-shadow-2: 0 18px 48px rgba(3, 9, 18, 0.28);
+
+  --cexieweb-space-1: 4px;
+  --cexieweb-space-2: 8px;
+  --cexieweb-space-3: 12px;
+  --cexieweb-space-4: 16px;
+  --cexieweb-space-5: 24px;
+  --cexieweb-space-6: 32px;
+  --cexieweb-space-7: 48px;
+  --cexieweb-space-8: 80px;
+}
+
+.light {
+  --cexieweb-background: #f3f7fb;
+  --cexieweb-foreground: #122032;
+  --cexieweb-card: #ffffff;
+  --cexieweb-card-foreground: #122032;
+  --cexieweb-popover: #ffffff;
+  --cexieweb-popover-foreground: #122032;
+  --cexieweb-muted: #e8eef5;
+  --cexieweb-muted-foreground: #66798d;
+  --cexieweb-border: #d9e3ee;
+  --cexieweb-input: #d0dde9;
+  --cexieweb-ring: #3f7db6;
+  --cexieweb-primary: #2f6fa9;
+  --cexieweb-primary-foreground: #f8fbff;
+  --cexieweb-primary-strong: #184d7d;
+  --cexieweb-primary-soft: #d8e8f6;
+  --cexieweb-primary-surface: #eaf3fb;
+  --cexieweb-state-success: #25805d;
+  --cexieweb-state-success-surface: #e5f5ee;
+  --cexieweb-state-warning: #9b6a22;
+  --cexieweb-state-warning-surface: #fbf2e6;
+  --cexieweb-state-error: #bf4e58;
+  --cexieweb-state-error-surface: #faebee;
+  --cexieweb-state-info: #2f6fa9;
+  --cexieweb-state-info-surface: #eaf3fb;
+  --cexieweb-shadow-1: 0 4px 12px rgba(12, 30, 52, 0.05);
+  --cexieweb-shadow-2: 0 18px 42px rgba(12, 30, 52, 0.12);
+}
+
+body {
+  font-family: var(--cexieweb-font-sans);
+  background: var(--cexieweb-background);
+  color: var(--cexieweb-foreground);
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--cexieweb-background);
+    --color-foreground: var(--cexieweb-foreground);
+    --color-card: var(--cexieweb-card);
+    --color-card-foreground: var(--cexieweb-card-foreground);
+    --color-popover: var(--cexieweb-popover);
+    --color-popover-foreground: var(--cexieweb-popover-foreground);
+    --color-primary: var(--cexieweb-primary);
+    --color-primary-foreground: var(--cexieweb-primary-foreground);
+    --color-muted: var(--cexieweb-muted);
+    --color-muted-foreground: var(--cexieweb-muted-foreground);
+    --color-border: var(--cexieweb-border);
+    --color-input: var(--cexieweb-input);
+    --color-ring: var(--cexieweb-ring);
+    --radius-sm: var(--cexieweb-radius-sm);
+    --radius-md: var(--cexieweb-radius-md);
+    --radius-lg: var(--cexieweb-radius-lg);
+  }
+  @layer base {
+    body { background: var(--cexieweb-background); color: var(--cexieweb-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style id="semantic-token-fallback">
+      .bg-background { background-color: var(--cexieweb-background); }
+      .text-background { color: var(--cexieweb-background); }
+      .border-background { border-color: var(--cexieweb-background); }
+      .ring-background { --tw-ring-color: var(--cexieweb-background); }
+      .bg-foreground { background-color: var(--cexieweb-foreground); }
+      .text-foreground { color: var(--cexieweb-foreground); }
+      .border-foreground { border-color: var(--cexieweb-foreground); }
+      .ring-foreground { --tw-ring-color: var(--cexieweb-foreground); }
+      .bg-card { background-color: var(--cexieweb-card); }
+      .text-card { color: var(--cexieweb-card); }
+      .border-card { border-color: var(--cexieweb-card); }
+      .ring-card { --tw-ring-color: var(--cexieweb-card); }
+      .bg-card-foreground { background-color: var(--cexieweb-card-foreground); }
+      .text-card-foreground { color: var(--cexieweb-card-foreground); }
+      .border-card-foreground { border-color: var(--cexieweb-card-foreground); }
+      .ring-card-foreground { --tw-ring-color: var(--cexieweb-card-foreground); }
+      .bg-popover { background-color: var(--cexieweb-popover); }
+      .text-popover { color: var(--cexieweb-popover); }
+      .border-popover { border-color: var(--cexieweb-popover); }
+      .ring-popover { --tw-ring-color: var(--cexieweb-popover); }
+      .bg-popover-foreground { background-color: var(--cexieweb-popover-foreground); }
+      .text-popover-foreground { color: var(--cexieweb-popover-foreground); }
+      .border-popover-foreground { border-color: var(--cexieweb-popover-foreground); }
+      .ring-popover-foreground { --tw-ring-color: var(--cexieweb-popover-foreground); }
+      .bg-primary { background-color: var(--cexieweb-primary); }
+      .text-primary { color: var(--cexieweb-primary); }
+      .border-primary { border-color: var(--cexieweb-primary); }
+      .ring-primary { --tw-ring-color: var(--cexieweb-primary); }
+      .bg-primary-foreground { background-color: var(--cexieweb-primary-foreground); }
+      .text-primary-foreground { color: var(--cexieweb-primary-foreground); }
+      .border-primary-foreground { border-color: var(--cexieweb-primary-foreground); }
+      .ring-primary-foreground { --tw-ring-color: var(--cexieweb-primary-foreground); }
+      .bg-muted { background-color: var(--cexieweb-muted); }
+      .text-muted { color: var(--cexieweb-muted); }
+      .border-muted { border-color: var(--cexieweb-muted); }
+      .ring-muted { --tw-ring-color: var(--cexieweb-muted); }
+      .bg-muted-foreground { background-color: var(--cexieweb-muted-foreground); }
+      .text-muted-foreground { color: var(--cexieweb-muted-foreground); }
+      .border-muted-foreground { border-color: var(--cexieweb-muted-foreground); }
+      .ring-muted-foreground { --tw-ring-color: var(--cexieweb-muted-foreground); }
+      .bg-border { background-color: var(--cexieweb-border); }
+      .text-border { color: var(--cexieweb-border); }
+      .border-border { border-color: var(--cexieweb-border); }
+      .ring-border { --tw-ring-color: var(--cexieweb-border); }
+      .bg-input { background-color: var(--cexieweb-input); }
+      .text-input { color: var(--cexieweb-input); }
+      .border-input { border-color: var(--cexieweb-input); }
+      .ring-input { --tw-ring-color: var(--cexieweb-input); }
+      .bg-ring { background-color: var(--cexieweb-ring); }
+      .text-ring { color: var(--cexieweb-ring); }
+      .border-ring { border-color: var(--cexieweb-ring); }
+      .ring-ring { --tw-ring-color: var(--cexieweb-ring); }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+    <style id="critical-layout">
+      html, body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+
+      .hole-shell {
+        display: grid;
+        grid-template-columns: 248px minmax(0, 1fr);
+        height: 100vh;
+        min-height: 100vh;
+        background: linear-gradient(180deg, rgba(234, 243, 251, 0.92) 0%, rgba(243, 247, 251, 1) 100%);
+      }
+
+      .hole-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        padding: 20px 18px;
+        border-right: 1px solid var(--cexieweb-border);
+        background: linear-gradient(180deg, #13263a 0%, #102031 100%);
+        color: #edf4ff;
+      }
+
+      .hole-sidebar .brand-block,
+      .hole-sidebar .nav-group,
+      .hole-sidebar .sidebar-card {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 16px;
+      }
+
+      .hole-main-frame {
+        display: grid;
+        grid-template-rows: auto auto minmax(0, 1fr) auto;
+        min-width: 0;
+        min-height: 0;
+      }
+
+      .hole-command-bar,
+      .hole-context-strip,
+      .hole-footer {
+        padding: 16px 20px;
+      }
+
+      .hole-command-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        border-bottom: 1px solid var(--cexieweb-border);
+        background: rgba(243, 247, 251, 0.92);
+        backdrop-filter: blur(16px);
+      }
+
+      .hole-context-strip {
+        display: grid;
+        grid-template-columns: minmax(0, 1.8fr) minmax(320px, 1fr);
+        gap: 16px;
+        border-bottom: 1px solid var(--cexieweb-border);
+        background: rgba(255, 255, 255, 0.76);
+      }
+
+      .hole-primary-scroll {
+        min-height: 0;
+        overflow: auto;
+        padding: 18px 20px 16px;
+      }
+
+      .hole-primary-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.7fr) 336px;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .panel-card {
+        border: 1px solid var(--cexieweb-border);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: var(--cexieweb-shadow-1);
+      }
+
+      .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .command-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .table-wrap {
+        overflow-x: auto;
+      }
+
+      .hole-table {
+        width: 100%;
+        min-width: 1120px;
+        border-collapse: collapse;
+      }
+
+      .hole-table th,
+      .hole-table td {
+        padding: 14px 12px;
+        border-bottom: 1px solid var(--cexieweb-border);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .hole-table th {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        background: #f8fbff;
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--cexieweb-muted-foreground);
+      }
+
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .ops-list {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .side-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .mini-list {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .footer-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      @media (max-width: 1400px) {
+        .hole-context-strip,
+        .hole-primary-layout {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+
+      @media (max-width: 1180px) {
+        .hole-shell {
+          grid-template-columns: 220px minmax(0, 1fr);
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased">
+    <main data-viewport-mode="app-shell">
+        <div class="hole-shell">
+            <aside class="hole-sidebar">
+                <div class="brand-block p-4">
+                    <div class="flex items-center gap-3">
+                        <div class="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-white">
+                            <i data-lucide="radar" class="h-5 w-5"></i>
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.24em] text-slate-300">CEXIE OPS</p>
+                            <h1 class="text-lg font-semibold text-white">测孔总控</h1>
+                        </div>
+                    </div>
+                    <p class="mt-4 text-sm leading-6 text-slate-300">高频工程动作集中到同一工作区，优先暴露风险、离线设备与待执行任务。</p>
+                </div>
+                <nav class="nav-group p-3" aria-label="left-sidebar">
+                    <a href="#" class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-sm font-medium text-white">
+                        <span class="flex items-center gap-2">
+                            <i data-lucide="layout-dashboard" class="h-4 w-4"></i>
+                            总控总览
+                        </span>
+                        <span class="rounded-full bg-white/10 px-2 py-0.5 text-xs">当前</span>
+                    </a>
+                    <a href="#" class="mt-2 flex items-center gap-2 rounded-2xl px-4 py-3 text-sm text-slate-300 transition hover:bg-white/6">
+                        <i data-lucide="cpu" class="h-4 w-4"></i>
+                        上位机与采集链路
+                    </a>
+                    <a href="#" class="mt-2 flex items-center gap-2 rounded-2xl px-4 py-3 text-sm text-slate-300 transition hover:bg-white/6">
+                        <i data-lucide="siren" class="h-4 w-4"></i>
+                        告警处置
+                    </a>
+                    <a href="#" class="mt-2 flex items-center gap-2 rounded-2xl px-4 py-3 text-sm text-slate-300 transition hover:bg-white/6">
+                        <i data-lucide="clipboard-list" class="h-4 w-4"></i>
+                        任务编排
+                    </a>
+                </nav>
+                <div class="sidebar-card p-4">
+                    <p class="text-xs uppercase tracking-[0.22em] text-slate-400">首屏优先级</p>
+                    <div class="mini-list mt-4">
+                        <div class="rounded-2xl border border-rose-400/20 bg-rose-500/10 p-3">
+                            <div class="flex items-start justify-between gap-3">
+                                <div>
+                                    <p class="text-sm font-semibold text-white">异常测孔 3 个</p>
+                                    <p class="mt-1 text-xs leading-5 text-slate-300">H-03、H-08、H-12 振动偏移超阈值，需优先复测。</p>
+                                </div>
+                                <i data-lucide="triangle-alert" class="mt-0.5 h-4 w-4 text-rose-300"></i>
+                            </div>
+                        </div>
+                        <div class="rounded-2xl border border-amber-300/15 bg-amber-400/10 p-3">
+                            <p class="text-sm font-semibold text-white">离线上位机 2 台</p>
+                            <p class="mt-1 text-xs leading-5 text-slate-300">RIG-07 与 RIG-09 超过 15 分钟无心跳。</p>
+                        </div>
+                        <div class="rounded-2xl border border-sky-300/15 bg-sky-400/10 p-3">
+                            <p class="text-sm font-semibold text-white">待执行任务 6 项</p>
+                            <p class="mt-1 text-xs leading-5 text-slate-300">其中 2 项已过计划时间，建议直接下发监测。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-card mt-auto p-4">
+                    <p class="text-xs uppercase tracking-[0.22em] text-slate-400">值班工程师</p>
+                    <div class="mt-3 flex items-center justify-between rounded-2xl bg-white/6 px-3 py-3">
+                        <div>
+                            <p class="text-sm font-semibold text-white">李工 / 岩土监测</p>
+                            <p class="text-xs text-slate-300">夜间班次 08:00 - 20:00</p>
+                        </div>
+                        <span class="status-pill bg-emerald-400/15 text-emerald-200">在线</span>
+                    </div>
+                </div>
+            </aside>
+
+            <div class="hole-main-frame">
+                <header id="hole-command-bar" class="hole-command-bar">
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-3 text-sm text-muted-foreground">
+                            <a href="#" data-dom-id="back-to-projects" class="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 font-medium text-foreground shadow-sm">
+                                <i data-lucide="arrow-left" class="h-4 w-4"></i>
+                                返回工程列表
+                            </a>
+                            <span class="inline-flex items-center gap-2" data-interaction="project-enter-hole-console">
+                                <i data-lucide="chevrons-right" class="h-4 w-4"></i>
+                                工程管理 / 西段边坡加固工程 / 测孔总控
+                            </span>
+                        </div>
+                        <div class="mt-3">
+                            <p class="text-xs uppercase tracking-[0.2em] text-muted-foreground">工程执行控制台</p>
+                            <h2 class="mt-1 text-2xl font-semibold text-foreground">测孔列表、设备绑定与监测启动在同一视图闭环完成</h2>
+                        </div>
+                    </div>
+                    <div class="command-actions">
+                        <button type="button" data-dom-id="open-bind-device" data-interaction="open-bind-device" class="inline-flex items-center gap-2 rounded-2xl border border-primary/15 bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground shadow-sm">
+                            <i data-lucide="plug-zap" class="h-4 w-4"></i>
+                            绑定设备
+                        </button>
+                        <button type="button" data-dom-id="open-workbench" data-interaction="open-workbench" class="inline-flex items-center gap-2 rounded-2xl border border-border bg-card px-4 py-3 text-sm font-semibold text-foreground">
+                            <i data-lucide="sliders-horizontal" class="h-4 w-4 text-primary"></i>
+                            打开工作台
+                        </button>
+                        <button type="button" data-dom-id="open-monitoring-task" data-interaction="open-monitoring-task" class="inline-flex items-center gap-2 rounded-2xl border border-emerald-200 bg-emerald-600 px-4 py-3 text-sm font-semibold text-white shadow-sm">
+                            <i data-lucide="play" class="h-4 w-4"></i>
+                            开始监测
+                        </button>
+                    </div>
+                </header>
+
+                <section class="hole-context-strip">
+                    <div class="panel-card p-5">
+                        <div class="flex items-start justify-between gap-4">
+                            <div>
+                                <p class="text-xs uppercase tracking-[0.22em] text-muted-foreground">当前工程上下文</p>
+                                <h3 class="mt-2 text-xl font-semibold text-foreground">西段边坡加固工程</h3>
+                                <p class="mt-2 text-sm text-muted-foreground">工程编号 CEX-2026-GT-014 · 贵州省六盘水市钟山区北侧边坡监测段</p>
+                            </div>
+                            <span class="status-pill bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-200">进行中</span>
+                        </div>
+                        <div class="stats-grid mt-5">
+                            <div class="rounded-2xl border border-border bg-background px-4 py-3">
+                                <p class="text-xs text-muted-foreground">测孔数量</p>
+                                <p class="mt-2 text-2xl font-semibold text-foreground">18</p>
+                            </div>
+                            <div class="rounded-2xl border border-border bg-background px-4 py-3">
+                                <p class="text-xs text-muted-foreground">在线上位机</p>
+                                <p class="mt-2 text-2xl font-semibold text-foreground">9 / 11</p>
+                            </div>
+                            <div class="rounded-2xl border border-border bg-background px-4 py-3">
+                                <p class="text-xs text-muted-foreground">告警数</p>
+                                <p class="mt-2 text-2xl font-semibold text-rose-600">5</p>
+                            </div>
+                            <div class="rounded-2xl border border-border bg-background px-4 py-3">
+                                <p class="text-xs text-muted-foreground">最近监测时间</p>
+                                <p class="mt-2 text-lg font-semibold text-foreground">2026-07-28 14:20</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-card p-5">
+                        <div class="flex items-center justify-between gap-4">
+                            <div>
+                                <p class="text-xs uppercase tracking-[0.22em] text-muted-foreground">风险与任务汇总</p>
+                                <h3 class="mt-2 text-lg font-semibold text-foreground">首屏直接看到异常、离线与待执行</h3>
+                            </div>
+                            <i data-lucide="shield-alert" class="h-5 w-5 text-rose-500"></i>
+                        </div>
+                        <div class="mt-4 grid grid-cols-3 gap-3">
+                            <div class="rounded-2xl border border-rose-100 bg-rose-50 px-4 py-3">
+                                <p class="text-xs text-rose-600">异常测孔</p>
+                                <p class="mt-1 text-xl font-semibold text-rose-700">3</p>
+                            </div>
+                            <div class="rounded-2xl border border-amber-100 bg-amber-50 px-4 py-3">
+                                <p class="text-xs text-amber-700">离线设备</p>
+                                <p class="mt-1 text-xl font-semibold text-amber-800">2</p>
+                            </div>
+                            <div class="rounded-2xl border border-sky-100 bg-sky-50 px-4 py-3">
+                                <p class="text-xs text-sky-700">待执行任务</p>
+                                <p class="mt-1 text-xl font-semibold text-sky-800">6</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="hole-primary-scroll no-scrollbar" data-scroll-region="primary">
+                    <div class="hole-primary-layout">
+                        <div class="space-y-4">
+                            <section class="panel-card p-5">
+                                <div class="flex items-center justify-between gap-4">
+                                    <div>
+                                        <p class="text-xs uppercase tracking-[0.22em] text-muted-foreground">工程总览与筛选</p>
+                                        <h3 class="mt-2 text-lg font-semibold text-foreground">测孔总览与风险统计</h3>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                                        <span class="status-pill bg-rose-50 text-rose-700 ring-1 ring-inset ring-rose-200">需复测 3</span>
+                                        <span class="status-pill bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-200">离线 2</span>
+                                        <span class="status-pill bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200">待执行 6</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 flex flex-wrap items-center gap-3">
+                                    <button type="button" class="rounded-full border border-primary/10 bg-primary-soft px-4 py-2 text-sm font-medium text-primary-strong">全部测孔 18</button>
+                                    <button type="button" class="rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground">高风险 3</button>
+                                    <button type="button" class="rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground">离线设备 2</button>
+                                    <button type="button" class="rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground">待绑定 4</button>
+                                    <button type="button" class="rounded-full border border-border bg-card px-4 py-2 text-sm text-foreground">今日有任务 9</button>
+                                </div>
+                            </section>
+
+                            <section id="hole-table" class="panel-card p-5">
+                                <div class="flex items-center justify-between gap-4">
+                                    <div>
+                                        <p class="text-xs uppercase tracking-[0.22em] text-muted-foreground">测孔列表与任务状态</p>
+                                        <h3 class="mt-2 text-lg font-semibold text-foreground">测孔列表主表格</h3>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                                        <i data-lucide="filter" class="h-4 w-4"></i>
+                                        风险优先排序
+                                    </div>
+                                </div>
+                                <div class="table-wrap mt-4">
+                                    <table class="hole-table">
+                                        <thead>
+                                            <tr>
+                                                <th>测孔编号</th>
+                                                <th>类型</th>
+                                                <th>深度</th>
+                                                <th>预警阈值</th>
+                                                <th>绑定上位机</th>
+                                                <th>工作台状态</th>
+                                                <th>监测任务状态</th>
+                                                <th>最近测量</th>
+                                                <th>风险等级</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="bg-rose-50/55">
+                                                <td class="font-semibold text-foreground">H-03</td>
+                                                <td>边坡位移孔</td>
+                                                <td>42m</td>
+                                                <td>位移 ≥ 3.5mm</td>
+                                                <td>RIG-02 · 在线</td>
+                                                <td><span class="status-pill bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200">参数待复核</span></td>
+                                                <td><span class="status-pill bg-rose-50 text-rose-700 ring-1 ring-inset ring-rose-200">超阈待复测</span></td>
+                                                <td>14:18 / 偏移 3.9mm</td>
+                                                <td><span class="status-pill bg-rose-100 text-rose-700">高</span></td>
+                                                <td>
+                                                    <div class="ops-list">
+                                                        <button class="rounded-full border border-rose-200 bg-white px-3 py-1.5 text-xs font-medium text-rose-700">查看状态</button>
+                                                        <button class="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground">绑定设备</button>
+                                                        <button class="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground">进工作台</button>
+                                                        <button class="rounded-full border border-emerald-200 bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white">开始监测</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-semibold text-foreground">H-08</td>
+                                                <td>锚索应力孔</td>
+                                                <td>36m</td>
+                                                <td>应力 ≥ 132kN</td>
+                                                <td>RIG-07 · 离线</td>
+                                                <td><span class="status-pill bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-200">离线待恢复</span></td>
+                                                <td><span class="status-pill bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-200">任务阻塞</span></td>
+                                                <td>13:40 / 数据中断</td>
+                                                <td><span class="status-pill bg-amber-100 text-amber-800">中高</span></td>
+                                                <td>
+                                                    <div class="ops-list">
+                                                        <button class="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground">查看状态</button>
+                                                        <button class="rounded-full border border-primary/15 bg-primary-soft px-3 py-1.5 text-xs font-medium text-primary-strong">绑定设备</button>
+                                                        <button class="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground">进工作台</button>
+                                                        <button class="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-muted-foreground">开始监测</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-semibold text-foreground">H-12</td>
+                                                <td>地下水位孔</td>
+                                                <td>51m</td>
+                                                <td>水位 ≥ 8.0m</td>
+                                                <td>RIG-09 · 离线</td>
+                                                <td><span class="status-pill bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-200">待重连</span></td>
+                                                <td><span class="status-pill bg-rose-50 text-rose-700 ring-1 ring-inset ring-rose-200">待人工确认</span></td>
+                                                <td>12:58 / 水位 8.3m</td>
+                                                <td><span class="status-pill bg-rose-100 text-rose-700">高</span></td>
+                                                <td>
+                                                    <div class="ops-list">
+                                                        <button class="rounded-full border border-rose-200 bg-white px-3 py-1.5 text-xs font-medium text-rose-700">查看状态</button>
+                                                        <button class="rounded-full border border-primary/15 bg-primary-soft px-3 py-1.5 text-xs font-medium text-primary-strong">绑定设备</button>
+                                                        <button class="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground">进工作台</button>
+                                                        <button class="rounded-full border border-emerald-200 bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white">开始监测</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-semibold text-foreground">H-05</td>
+                                                <td>支护变形孔</td>
+                                                <td>33m</td>
+                                                <td>变形 ≥ 2.2mm</td>
+                                                <td>RIG-03 · 在线</td>
+                                                <td><span class="status-pill bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-200">工作台就绪</span></td>
+                                                <td><span class="status-pill bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200">15:00 待执行</span></td>
+                                                <td>11:25 / 1.1mm</td>
+                                                <td><span class="status-pill bg-slate-100 text-slate-700">低</span></td>
+                                                <td>
+                                                    <div class="ops-list">
+                                                        <button class="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground">查看状态</button>
+                                                        <button class="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground">绑定设备</button>
+                                                        <button class="rounded-full border border-primary/15 bg-primary-soft px-3 py-1.5 text-xs font-medium text-primary-strong">进工作台</button>
+                                                        <button class="rounded-full border border-emerald-200 bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white">开始监测</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-semibold text-foreground">H-15</td>
+                                                <td>孔隙水压力孔</td>
+                                                <td>48m</td>
+                                                <td>压力 ≥ 185kPa</td>
+                                                <td>未绑定</td>
+                                                <td><span class="status-pill bg-slate-100 text-slate-700 ring-1 ring-inset ring-slate-200">待配置</span></td>
+                                                <td><span class="status-pill bg-sky-50 text-sky-700 ring-1 ring-inset ring-sky-200">待排程</span></td>
+                                                <td>昨日 17:45</td>
+                                                <td><span class="status-pill bg-amber-100 text-amber-800">中</span></td>
+                                                <td>
+                                                    <div class="ops-list">
+                                                        <button class="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground">查看状态</button>
+                                                        <button class="rounded-full border border-primary/15 bg-primary-soft px-3 py-1.5 text-xs font-medium text-primary-strong">绑定设备</button>
+                                                        <button class="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-muted-foreground">进工作台</button>
+                                                        <button class="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-muted-foreground">开始监测</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="font-semibold text-foreground">H-18</td>
+                                                <td>深部位移孔</td>
+                                                <td>64m</td>
+                                                <td>位移 ≥ 4.1mm</td>
+                                                <td>RIG-11 · 在线</td>
+                                                <td><span class="status-pill bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-200">正常</span></td>
+                                                <td><span class="status-pill bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-200">已执行</span></td>
+                                                <td>14:05 / 2.0mm</td>
+                                                <td><span class="status-pill bg-slate-100 text-slate-700">低</span></td>
+                                                <td>
+                                                    <div class="ops-list">
+                                                        <button class="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground">查看状态</button>
+                                                        <button class="rounded-full border border-border bg-white px-3 py-1.5 text-xs font-medium text-foreground">绑定设备</button>
+                                                        <button class="rounded-full border border-primary/15 bg-primary-soft px-3 py-1.5 text-xs font-medium text-primary-strong">进工作台</button>
+                                                        <button class="rounded-full border border-emerald-200 bg-emerald-600 px-3 py-1.5 text-xs font-medium text-white">开始监测</button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </section>
+                        </div>
+
+                        <aside id="ops-side-panel" class="side-stack">
+                            <section class="panel-card p-5">
+                                <div class="flex items-center justify-between gap-3">
+                                    <div>
+                                        <p class="text-xs uppercase tracking-[0.22em] text-muted-foreground">绑定设备抽屉</p>
+                                        <h3 class="mt-2 text-lg font-semibold text-foreground">H-08 设备快速绑定</h3>
+                                    </div>
+                                    <i data-lucide="plug" class="h-5 w-5 text-primary"></i>
+                                </div>
+                                <div class="mt-4 space-y-3 text-sm">
+                                    <div class="rounded-2xl border border-border bg-background px-4 py-3">
+                                        <p class="text-xs text-muted-foreground">目标测孔</p>
+                                        <p class="mt-1 font-semibold text-foreground">H-08 · 锚索应力孔</p>
+                                    </div>
+                                    <div class="rounded-2xl border border-border bg-background px-4 py-3">
+                                        <p class="text-xs text-muted-foreground">推荐上位机</p>
+                                        <p class="mt-1 font-semibold text-foreground">RIG-05 · 信号稳定 / 电量 88%</p>
+                                    </div>
+                                    <div class="rounded-2xl border border-border bg-background px-4 py-3">
+                                        <p class="text-xs text-muted-foreground">校验项</p>
+                                        <p class="mt-1 text-foreground">采样频率 10s · 通道 A2 · 需重置心跳</p>
+                                    </div>
+                                </div>
+                                <button type="button" data-interaction="bind-confirm" class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-2xl border border-primary/15 bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground">
+                                    <i data-lucide="link" class="h-4 w-4"></i>
+                                    确认绑定并恢复任务
+                                </button>
+                            </section>
+
+                            <section class="panel-card p-5">
+                                <div class="flex items-center justify-between gap-3">
+                                    <div>
+                                        <p class="text-xs uppercase tracking-[0.22em] text-muted-foreground">工作台指令面板</p>
+                                        <h3 class="mt-2 text-lg font-semibold text-foreground">H-03 复测参数</h3>
+                                    </div>
+                                    <i data-lucide="sliders-horizontal" class="h-5 w-5 text-primary"></i>
+                                </div>
+                                <div class="mini-list mt-4 text-sm">
+                                    <div class="rounded-2xl border border-border bg-background px-4 py-3">
+                                        <p class="font-semibold text-foreground">采样窗口</p>
+                                        <p class="mt-1 text-muted-foreground">连续采样 90 秒，异常点阈值降至 3.2mm。</p>
+                                    </div>
+                                    <div class="rounded-2xl border border-border bg-background px-4 py-3">
+                                        <p class="font-semibold text-foreground">执行队列</p>
+                                        <p class="mt-1 text-muted-foreground">1. 读取当前状态 2. 清空残留缓存 3. 下发复测指令</p>
+                                    </div>
+                                    <div class="rounded-2xl border border-border bg-background px-4 py-3">
+                                        <p class="font-semibold text-foreground">操作人</p>
+                                        <p class="mt-1 text-muted-foreground">李工 · 14:22 已完成指令复核</p>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="panel-card p-5">
+                                <div class="flex items-center justify-between gap-3">
+                                    <div>
+                                        <p class="text-xs uppercase tracking-[0.22em] text-muted-foreground">开始监测任务反馈</p>
+                                        <h3 class="mt-2 text-lg font-semibold text-foreground">任务与告警侧边信息</h3>
+                                    </div>
+                                    <i data-lucide="activity" class="h-5 w-5 text-emerald-600"></i>
+                                </div>
+                                <div class="mt-4 rounded-2xl border border-emerald-100 bg-emerald-50 px-4 py-4">
+                                    <p class="text-sm font-semibold text-emerald-800">H-05 监测任务已入列</p>
+                                    <p class="mt-2 text-sm leading-6 text-emerald-700">计划开始于 15:00，已同步至 RIG-03，等待采样窗口开放。</p>
+                                </div>
+                                <div class="mt-4 rounded-2xl border border-rose-100 bg-rose-50 px-4 py-4">
+                                    <p class="text-sm font-semibold text-rose-700">告警提醒</p>
+                                    <p class="mt-2 text-sm leading-6 text-rose-700">H-03 与 H-12 已进入人工复核队列，建议优先处理后再批量启动常规监测。</p>
+                                </div>
+                                <a href="#" data-interaction="task-back-console" class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                                    <i data-lucide="corner-down-left" class="h-4 w-4"></i>
+                                    返回总控继续处理其他测孔
+                                </a>
+                            </section>
+                        </aside>
+                    </div>
+                </section>
+
+                <footer class="hole-footer">
+                    <div class="panel-card px-5 py-4">
+                        <div class="footer-meta">
+                            <div class="flex items-center gap-4 text-sm text-muted-foreground">
+                                <span>版本 v2.6.14</span>
+                                <span>数据更新时间 2026-07-28 14:20</span>
+                            </div>
+                            <a id="footer-help" href="#" class="inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                                <i data-lucide="life-buoy" class="h-4 w-4"></i>
+                                帮助中心
+                            </a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </main>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

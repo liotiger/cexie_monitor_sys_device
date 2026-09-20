@@ -1,0 +1,149 @@
+{
+  "data": [
+    {
+      "id": "page-projects-hub",
+      "title": "工程管理",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785169200000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/projects-hub.html",
+        "interactions": [
+          {
+            "domId": "project-enter-hole-console",
+            "targetPageId": "page-hole-console",
+            "transitionLabel": "进入测孔总控"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-hole-console",
+      "title": "测孔总控",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785169201000,
+      "canvasData": {
+        "x": 620,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/hole-console.html",
+        "interactions": [
+          {
+            "domId": "back-to-projects",
+            "targetPageId": "page-projects-hub",
+            "hideEdge": true,
+            "transitionLabel": "返回工程列表"
+          },
+          {
+            "domId": "open-bind-device",
+            "targetPageId": "page-bind-device",
+            "transitionLabel": "绑定设备"
+          },
+          {
+            "domId": "open-workbench",
+            "targetPageId": "page-workbench",
+            "transitionLabel": "打开工作台"
+          },
+          {
+            "domId": "open-monitoring-task",
+            "targetPageId": "page-monitoring-task",
+            "transitionLabel": "开始监测"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-bind-device",
+      "title": "绑定设备",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785169202000,
+      "canvasData": {
+        "x": 1240,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/bind-device.html",
+        "interactions": [
+          {
+            "domId": "bind-cancel",
+            "targetPageId": "page-hole-console",
+            "hideEdge": true,
+            "transitionLabel": "取消绑定"
+          },
+          {
+            "domId": "bind-confirm",
+            "targetPageId": "page-monitoring-task",
+            "transitionLabel": "绑定并进入监测"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-workbench",
+      "title": "设备工作台",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785169203000,
+      "canvasData": {
+        "x": 2480,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/workbench.html",
+        "interactions": [
+          {
+            "domId": "workbench-back-console",
+            "targetPageId": "page-hole-console",
+            "hideEdge": true,
+            "transitionLabel": "关闭工作台"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-monitoring-task",
+      "title": "监测任务",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1785169204000,
+      "canvasData": {
+        "x": 1860,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/monitoring-task.html",
+        "interactions": [
+          {
+            "domId": "task-back-console",
+            "targetPageId": "page-hole-console",
+            "hideEdge": true,
+            "transitionLabel": "返回测孔总控"
+          },
+          {
+            "domId": "task-open-workbench",
+            "targetPageId": "page-workbench",
+            "transitionLabel": "进入工作台"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "desktop",
+    "projectName": "测斜监测网页端工程化改版",
+    "designLibrary": null
+  }
+}

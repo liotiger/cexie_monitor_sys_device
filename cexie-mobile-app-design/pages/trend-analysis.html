@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>趋势分析</title>
+    <style id="theme-vars">
+:root {
+  --cexie-font-sans: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --cexie-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+
+  --cexie-background: #f4f7fb;
+  --cexie-foreground: #1f2937;
+  --cexie-muted: #eef3f8;
+  --cexie-muted-foreground: #66758b;
+  --cexie-card: #ffffff;
+  --cexie-card-foreground: #1f2937;
+  --cexie-border: #d7e0ea;
+  --cexie-divider: #e6edf4;
+
+  --cexie-primary: #2d5f93;
+  --cexie-primary-strong: #21496f;
+  --cexie-primary-soft: #dde8f3;
+  --cexie-primary-surface: #edf4fb;
+  --cexie-primary-foreground: #ffffff;
+
+  --cexie-success: #2f7c63;
+  --cexie-success-surface: #e7f4ef;
+  --cexie-warning: #a56b1f;
+  --cexie-warning-surface: #fbf2e6;
+  --cexie-error: #b14f4f;
+  --cexie-error-surface: #faecec;
+  --cexie-info: #3b6f98;
+  --cexie-info-surface: #eaf2f8;
+
+  --cexie-radius-xs: 6px;
+  --cexie-radius-sm: 8px;
+  --cexie-radius-md: 12px;
+  --cexie-radius-lg: 16px;
+
+  --cexie-shadow-1: 0 4px 12px rgba(18, 37, 56, 0.04);
+  --cexie-shadow-2: 0 10px 24px rgba(18, 37, 56, 0.05);
+
+  --cexie-spacing-1: 4px;
+  --cexie-spacing-2: 8px;
+  --cexie-spacing-3: 12px;
+  --cexie-spacing-4: 16px;
+  --cexie-spacing-5: 20px;
+  --cexie-spacing-6: 24px;
+}
+
+.dark {
+  --cexie-background: #0f1722;
+  --cexie-foreground: #e8eef5;
+  --cexie-muted: #172230;
+  --cexie-muted-foreground: #93a4b8;
+  --cexie-card: #16212d;
+  --cexie-card-foreground: #e8eef5;
+  --cexie-border: #243444;
+  --cexie-divider: #223241;
+
+  --cexie-primary: #5b87b5;
+  --cexie-primary-strong: #7da1c6;
+  --cexie-primary-soft: #203549;
+  --cexie-primary-surface: #172737;
+  --cexie-primary-foreground: #f7fbff;
+
+  --cexie-success: #59a68a;
+  --cexie-success-surface: #173127;
+  --cexie-warning: #d1a05c;
+  --cexie-warning-surface: #382b18;
+  --cexie-error: #d68484;
+  --cexie-error-surface: #351e1e;
+  --cexie-info: #79a7cf;
+  --cexie-info-surface: #1a2d3f;
+}
+
+body {
+  font-family: var(--cexie-font-sans);
+  color: var(--cexie-foreground);
+  background: var(--cexie-background);
+}
+
+.cexie-display {
+  font-family: var(--cexie-font-sans);
+  font-size: clamp(28px, 7vw, 34px);
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.cexie-h1 {
+  font-family: var(--cexie-font-sans);
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.cexie-h2 {
+  font-family: var(--cexie-font-sans);
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.cexie-h3 {
+  font-family: var(--cexie-font-sans);
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.cexie-body {
+  font-family: var(--cexie-font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.cexie-caption {
+  font-family: var(--cexie-font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.cexie-metric {
+  font-family: var(--cexie-font-sans);
+  font-size: clamp(24px, 6vw, 30px);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--cexie-background);
+    --color-foreground: var(--cexie-foreground);
+    --color-card: var(--cexie-card);
+    --color-card-foreground: var(--cexie-card-foreground);
+    --color-primary: var(--cexie-primary);
+    --color-primary-foreground: var(--cexie-primary-foreground);
+    --color-muted: var(--cexie-muted);
+    --color-muted-foreground: var(--cexie-muted-foreground);
+    --color-border: var(--cexie-border);
+  }
+  @layer base {
+    body { background: var(--cexie-background); color: var(--cexie-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen bg-[var(--cexie-background)] text-[var(--cexie-foreground)]">
+  <main class="mx-auto w-full max-w-md px-4 pb-28 pt-4 sm:max-w-lg">
+    <header class="sticky top-0 z-20 -mx-4 border-b border-[var(--cexie-border)] bg-[var(--cexie-background)]/96 px-4 py-3 backdrop-blur">
+      <div class="flex items-center justify-between gap-3">
+        <div class="min-w-0">
+          <p class="truncate text-[12px] text-[var(--cexie-muted-foreground)]">趋势分析</p>
+          <h1 class="cexie-h2 truncate">深度 - 位移成果曲线</h1>
+        </div>
+        <button id="trend-open-reports" data-dom-id="trend-open-reports" type="button" class="inline-flex h-9 items-center justify-center rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] px-3 text-[13px] font-medium text-[var(--cexie-primary)]">
+          去报表
+        </button>
+      </div>
+    </header>
+
+    <section class="mt-4 rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-4 shadow-[var(--cexie-shadow-1)]">
+      <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+        <label class="block">
+          <span class="mb-2 block text-[13px] font-medium text-[var(--cexie-muted-foreground)]">工程</span>
+          <select class="h-11 w-full rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-background)] px-3 text-[14px] outline-none">
+            <option>南城深基坑三期监测</option>
+            <option>北坡边坡稳定性监测</option>
+          </select>
+        </label>
+        <label class="block">
+          <span class="mb-2 block text-[13px] font-medium text-[var(--cexie-muted-foreground)]">测孔</span>
+          <select class="h-11 w-full rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-background)] px-3 text-[14px] outline-none">
+            <option>CX-07 东侧支护段</option>
+            <option>CX-09 北侧土体</option>
+            <option>CX-12 西南角围护</option>
+          </select>
+        </label>
+        <label class="block">
+          <span class="mb-2 block text-[13px] font-medium text-[var(--cexie-muted-foreground)]">时间范围</span>
+          <select class="h-11 w-full rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-background)] px-3 text-[14px] outline-none">
+            <option>最近 7 天</option>
+            <option>最近 15 天</option>
+            <option>最近 30 天</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section class="mt-4 rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-4 shadow-[var(--cexie-shadow-1)]">
+      <div class="flex items-center justify-between gap-3">
+        <div class="min-w-0">
+          <h2 class="cexie-h3 truncate">多曲线对比</h2>
+          <p class="mt-1 line-clamp-2 text-[12px] leading-5 text-[var(--cexie-muted-foreground)]">曲线分别代表 06-27、06-30、07-03 三次成果，横轴为累计位移，纵轴为深度。</p>
+        </div>
+        <i data-lucide="chart-line" class="h-5 w-5 shrink-0 text-[var(--cexie-primary)]"></i>
+      </div>
+      <div class="mt-4 h-[320px] rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-background)] p-3">
+        <canvas id="trend-chart" width="320" height="240" class="h-full w-full"></canvas>
+      </div>
+      <div class="mt-4 flex flex-nowrap gap-2 overflow-x-auto">
+        <span class="inline-flex h-8 shrink-0 items-center gap-2 rounded-[var(--cexie-radius-xs)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] px-3 text-[12px] font-medium"><span class="h-2.5 w-2.5 rounded-full bg-[var(--cexie-primary)]"></span>07-03 最新成果</span>
+        <span class="inline-flex h-8 shrink-0 items-center gap-2 rounded-[var(--cexie-radius-xs)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] px-3 text-[12px] font-medium"><span class="h-2.5 w-2.5 rounded-full bg-[var(--cexie-info)]"></span>06-30 对比成果</span>
+        <span class="inline-flex h-8 shrink-0 items-center gap-2 rounded-[var(--cexie-radius-xs)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] px-3 text-[12px] font-medium"><span class="h-2.5 w-2.5 rounded-full bg-[var(--cexie-warning)]"></span>06-27 基线成果</span>
+      </div>
+    </section>
+
+    <section class="mt-4 rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-4 shadow-[var(--cexie-shadow-1)]">
+      <h2 class="cexie-h3 truncate">关键测点摘要</h2>
+      <div class="mt-3 divide-y divide-[var(--cexie-divider)]">
+        <div class="flex items-center justify-between gap-3 py-3 first:pt-0">
+          <div class="min-w-0"><p class="truncate text-[14px] font-semibold">深度 6m / 节点 12</p><p class="truncate text-[12px] text-[var(--cexie-muted-foreground)]">累计位移 10.80mm，较基线增加 2.12mm</p></div>
+          <span class="inline-flex h-7 shrink-0 items-center rounded-[var(--cexie-radius-xs)] bg-[var(--cexie-error-surface)] px-2.5 text-[12px] font-semibold text-[var(--cexie-error)]">高位</span>
+        </div>
+        <div class="flex items-center justify-between gap-3 py-3">
+          <div class="min-w-0"><p class="truncate text-[14px] font-semibold">深度 10m / 节点 20</p><p class="truncate text-[12px] text-[var(--cexie-muted-foreground)]">变形速率 0.23mm/d，近 3 次持续抬升</p></div>
+          <span class="inline-flex h-7 shrink-0 items-center rounded-[var(--cexie-radius-xs)] bg-[var(--cexie-warning-surface)] px-2.5 text-[12px] font-semibold text-[var(--cexie-warning)]">关注</span>
+        </div>
+        <div class="flex items-center justify-between gap-3 py-3 last:pb-0">
+          <div class="min-w-0"><p class="truncate text-[14px] font-semibold">深度 14m / 节点 28</p><p class="truncate text-[12px] text-[var(--cexie-muted-foreground)]">曲线基本贴近基线，暂无异常波动</p></div>
+          <span class="inline-flex h-7 shrink-0 items-center rounded-[var(--cexie-radius-xs)] bg-[var(--cexie-success-surface)] px-2.5 text-[12px] font-semibold text-[var(--cexie-success)]">稳定</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-4 rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-4 shadow-[var(--cexie-shadow-1)]">
+      <div class="flex items-center justify-between gap-3">
+        <h2 class="cexie-h3 truncate">最近成果</h2>
+        <span class="truncate text-[12px] text-[var(--cexie-muted-foreground)]">3 条</span>
+      </div>
+      <div class="mt-3 divide-y divide-[var(--cexie-divider)]">
+        <article class="py-3 first:pt-0">
+          <p class="truncate text-[14px] font-semibold">2026-07-03 09:20 自动采集成果</p>
+          <p class="mt-1 truncate text-[12px] text-[var(--cexie-muted-foreground)]">成果 ID：R-0703-0920 · 位移峰值 10.80mm</p>
+        </article>
+        <article class="py-3">
+          <p class="truncate text-[14px] font-semibold">2026-06-30 17:40 巡检复核成果</p>
+          <p class="mt-1 truncate text-[12px] text-[var(--cexie-muted-foreground)]">成果 ID：R-0630-1740 · 与自动采集偏差 0.12mm</p>
+        </article>
+        <article class="py-3 last:pb-0">
+          <p class="truncate text-[14px] font-semibold">2026-06-27 08:00 基线成果</p>
+          <p class="mt-1 truncate text-[12px] text-[var(--cexie-muted-foreground)]">成果 ID：R-0627-0800 · 作为本阶段基准曲线</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <nav class="fixed bottom-0 left-0 right-0 border-t border-[var(--cexie-border)] bg-[var(--cexie-card)]/98 backdrop-blur">
+    <div class="mx-auto grid max-w-md grid-cols-5 px-2 py-2 sm:max-w-lg">
+      <button id="nav-home" data-dom-id="nav-home" class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-muted-foreground)]">
+        <i data-lucide="house" class="h-4 w-4"></i><span class="text-[11px] font-medium">首页</span>
+      </button>
+      <button id="nav-projects" data-dom-id="nav-projects" class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-muted-foreground)]">
+        <i data-lucide="folder-kanban" class="h-4 w-4"></i><span class="text-[11px] font-medium">工程</span>
+      </button>
+      <button class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-primary)]">
+        <i data-lucide="chart-line" class="h-4 w-4"></i><span class="text-[11px] font-medium">趋势</span>
+      </button>
+      <button id="nav-reports" data-dom-id="nav-reports" class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-muted-foreground)]">
+        <i data-lucide="file-text" class="h-4 w-4"></i><span class="text-[11px] font-medium">报表</span>
+      </button>
+      <button id="nav-profile" data-dom-id="nav-profile" class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-muted-foreground)]">
+        <i data-lucide="user-round" class="h-4 w-4"></i><span class="text-[11px] font-medium">我的</span>
+      </button>
+    </div>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script>
+    const css = getComputedStyle(document.documentElement);
+    const chart = document.getElementById('trend-chart');
+    if (chart && window.Chart) {
+      new Chart(chart, {
+        type: 'line',
+        data: {
+          labels: ['2m', '4m', '6m', '8m', '10m', '12m', '14m'],
+          datasets: [
+            {
+              label: '07-03 最新成果',
+              data: [1.4, 3.1, 5.8, 7.9, 8.8, 10.8, 9.2],
+              borderColor: css.getPropertyValue('--cexie-primary').trim(),
+              backgroundColor: 'transparent',
+              tension: 0.35,
+              borderWidth: 3,
+              pointRadius: 3
+            },
+            {
+              label: '06-30 对比成果',
+              data: [1.2, 2.7, 4.9, 6.6, 7.5, 9.1, 8.4],
+              borderColor: css.getPropertyValue('--cexie-info').trim(),
+              backgroundColor: 'transparent',
+              tension: 0.35,
+              borderWidth: 2,
+              pointRadius: 2
+            },
+            {
+              label: '06-27 基线成果',
+              data: [0.9, 2.1, 3.8, 5.1, 6.0, 7.0, 6.5],
+              borderColor: css.getPropertyValue('--cexie-warning').trim(),
+              backgroundColor: 'transparent',
+              tension: 0.35,
+              borderWidth: 2,
+              pointRadius: 2
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { display: false }
+          },
+          scales: {
+            x: {
+              title: { display: true, text: '深度' },
+              grid: { color: css.getPropertyValue('--cexie-divider').trim() },
+              ticks: { color: css.getPropertyValue('--cexie-muted-foreground').trim() }
+            },
+            y: {
+              title: { display: true, text: '累计位移(mm)' },
+              grid: { color: css.getPropertyValue('--cexie-divider').trim() },
+              ticks: { color: css.getPropertyValue('--cexie-muted-foreground').trim() }
+            }
+          }
+        }
+      });
+    }
+    lucide.createIcons();
+  </script>
+</body>
+</html>

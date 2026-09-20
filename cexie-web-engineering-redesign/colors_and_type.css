@@ -1,0 +1,82 @@
+:root {
+  --cexieweb-font-sans: Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  --cexieweb-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+
+  --cexieweb-background: #0f1722;
+  --cexieweb-foreground: #e7eef7;
+  --cexieweb-card: #162131;
+  --cexieweb-card-foreground: #e7eef7;
+  --cexieweb-popover: #182537;
+  --cexieweb-popover-foreground: #edf4ff;
+  --cexieweb-muted: #1d2b3d;
+  --cexieweb-muted-foreground: #8ea1b7;
+  --cexieweb-border: #233347;
+  --cexieweb-input: #24374d;
+  --cexieweb-ring: #4a8dc9;
+
+  --cexieweb-primary: #4a8dc9;
+  --cexieweb-primary-foreground: #f6fbff;
+  --cexieweb-primary-strong: #6ba7dc;
+  --cexieweb-primary-soft: #17314d;
+  --cexieweb-primary-surface: #13283f;
+
+  --cexieweb-state-success: #49b38a;
+  --cexieweb-state-success-surface: #132b24;
+  --cexieweb-state-warning: #d7a24d;
+  --cexieweb-state-warning-surface: #342713;
+  --cexieweb-state-error: #df7171;
+  --cexieweb-state-error-surface: #35191d;
+  --cexieweb-state-info: #68a7db;
+  --cexieweb-state-info-surface: #11263a;
+
+  --cexieweb-radius-sm: 8px;
+  --cexieweb-radius-md: 12px;
+  --cexieweb-radius-lg: 16px;
+
+  --cexieweb-shadow-1: 0 6px 18px rgba(3, 9, 18, 0.18);
+  --cexieweb-shadow-2: 0 18px 48px rgba(3, 9, 18, 0.28);
+
+  --cexieweb-space-1: 4px;
+  --cexieweb-space-2: 8px;
+  --cexieweb-space-3: 12px;
+  --cexieweb-space-4: 16px;
+  --cexieweb-space-5: 24px;
+  --cexieweb-space-6: 32px;
+  --cexieweb-space-7: 48px;
+  --cexieweb-space-8: 80px;
+}
+
+.light {
+  --cexieweb-background: #f3f7fb;
+  --cexieweb-foreground: #122032;
+  --cexieweb-card: #ffffff;
+  --cexieweb-card-foreground: #122032;
+  --cexieweb-popover: #ffffff;
+  --cexieweb-popover-foreground: #122032;
+  --cexieweb-muted: #e8eef5;
+  --cexieweb-muted-foreground: #66798d;
+  --cexieweb-border: #d9e3ee;
+  --cexieweb-input: #d0dde9;
+  --cexieweb-ring: #3f7db6;
+  --cexieweb-primary: #2f6fa9;
+  --cexieweb-primary-foreground: #f8fbff;
+  --cexieweb-primary-strong: #184d7d;
+  --cexieweb-primary-soft: #d8e8f6;
+  --cexieweb-primary-surface: #eaf3fb;
+  --cexieweb-state-success: #25805d;
+  --cexieweb-state-success-surface: #e5f5ee;
+  --cexieweb-state-warning: #9b6a22;
+  --cexieweb-state-warning-surface: #fbf2e6;
+  --cexieweb-state-error: #bf4e58;
+  --cexieweb-state-error-surface: #faebee;
+  --cexieweb-state-info: #2f6fa9;
+  --cexieweb-state-info-surface: #eaf3fb;
+  --cexieweb-shadow-1: 0 4px 12px rgba(12, 30, 52, 0.05);
+  --cexieweb-shadow-2: 0 18px 42px rgba(12, 30, 52, 0.12);
+}
+
+body {
+  font-family: var(--cexieweb-font-sans);
+  background: var(--cexieweb-background);
+  color: var(--cexieweb-foreground);
+}

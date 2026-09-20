@@ -1,0 +1,227 @@
+{
+  "project": {
+    "name": "测斜监测现场调试版",
+    "generationTree": {
+      "root": "cexie-mobile-app-design-draft",
+      "children": [
+        {
+          "name": "colors_and_type-draft.css",
+          "type": "file",
+          "role": "design-tokens"
+        },
+        {
+          "name": "partials",
+          "type": "directory",
+          "children": [
+            {
+              "name": "project-shell.html",
+              "type": "file",
+              "role": "shared-shell-reference"
+            }
+          ]
+        },
+        {
+          "name": "pages",
+          "type": "directory",
+          "children": [
+            {
+              "name": "login.html",
+              "title": "登录",
+              "businessScenario": "auth-entry",
+              "tabPage": false
+            },
+            {
+              "name": "projects.html",
+              "title": "工程",
+              "businessScenario": "project-entry",
+              "tabPage": true
+            },
+            {
+              "name": "devices.html",
+              "title": "设备",
+              "businessScenario": "device-list-entry",
+              "tabPage": true
+            },
+            {
+              "name": "device-operation.html",
+              "title": "设备操作",
+              "businessScenario": "device-operation-console",
+              "tabPage": false
+            },
+            {
+              "name": "profile.html",
+              "title": "我的",
+              "businessScenario": "engineer-profile",
+              "tabPage": true
+            }
+          ]
+        },
+        {
+          "name": "orchestration-summary.json",
+          "type": "file",
+          "role": "project-summary"
+        }
+      ]
+    }
+  },
+  "deviceType": "mobile",
+  "language": "zh-CN",
+  "designSource": {
+    "operatingMode": "free-explore"
+  },
+  "brandPrefix": "cexie",
+  "themeMode": "light",
+  "designRead": [
+    "这是面向现场工程师与调试工程师的设备联调工具画布。",
+    "主流程围绕工程入口、设备列表默认入口、设备操作台展开。",
+    "视觉与交互保持蓝灰工程监测气质，但强化操作台感与现场弱网场景表达。",
+    "工程页承担现场入口与项目切换，设备列表承担筛选与选设备，设备操作页承担调试执行与回执确认。"
+  ],
+  "designDials": {
+    "tone": "现场操作台",
+    "informationDensity": "medium",
+    "surfaceStyle": "light-card",
+    "actionFeedback": "explicit",
+    "motionIntensity": 1,
+    "radiusScale": "restrained",
+    "navigationPattern": "top-bar-plus-bottom-tab",
+    "workspacePriority": "device-debug-first",
+    "contentCompression": "higher-than-base"
+  },
+  "pages": [
+    {
+      "path": "pages/login.html",
+      "title": "登录",
+      "businessScenario": "auth-entry",
+      "domIds": [
+        "login-submit"
+      ],
+      "tabPage": false,
+      "miniProgramStyle": false,
+      "chartsRequired": false
+    },
+    {
+      "path": "pages/projects.html",
+      "title": "工程",
+      "businessScenario": "project-entry",
+      "domIds": [
+        "project-open-devices",
+        "nav-devices",
+        "nav-profile"
+      ],
+      "tabPage": true,
+      "miniProgramStyle": false,
+      "chartsRequired": false
+    },
+    {
+      "path": "pages/devices.html",
+      "title": "设备",
+      "businessScenario": "device-list-entry",
+      "domIds": [
+        "device-card-open",
+        "nav-projects",
+        "nav-profile"
+      ],
+      "tabPage": true,
+      "miniProgramStyle": false,
+      "chartsRequired": false
+    },
+    {
+      "path": "pages/device-operation.html",
+      "title": "设备操作",
+      "businessScenario": "device-operation-console",
+      "domIds": [
+        "device-back-list",
+        "device-send-command",
+        "device-quick-status",
+        "device-quick-collect",
+        "device-quick-sync",
+        "device-quick-reboot"
+      ],
+      "tabPage": false,
+      "miniProgramStyle": false,
+      "chartsRequired": false
+    },
+    {
+      "path": "pages/profile.html",
+      "title": "我的",
+      "businessScenario": "engineer-profile",
+      "domIds": [
+        "nav-projects",
+        "nav-devices"
+      ],
+      "tabPage": true,
+      "miniProgramStyle": false,
+      "chartsRequired": false
+    }
+  ],
+  "wiringPlan": [
+    {
+      "from": "pages/login.html#login-submit",
+      "to": "pages/projects.html"
+    },
+    {
+      "from": "pages/projects.html#project-open-devices",
+      "to": "pages/devices.html"
+    },
+    {
+      "from": "pages/projects.html#nav-devices",
+      "to": "pages/devices.html"
+    },
+    {
+      "from": "pages/projects.html#nav-profile",
+      "to": "pages/profile.html"
+    },
+    {
+      "from": "pages/devices.html#device-card-open",
+      "to": "pages/device-operation.html"
+    },
+    {
+      "from": "pages/devices.html#nav-projects",
+      "to": "pages/projects.html"
+    },
+    {
+      "from": "pages/devices.html#nav-profile",
+      "to": "pages/profile.html"
+    },
+    {
+      "from": "pages/device-operation.html#device-back-list",
+      "to": "pages/devices.html"
+    },
+    {
+      "from": "pages/profile.html#nav-projects",
+      "to": "pages/projects.html"
+    },
+    {
+      "from": "pages/profile.html#nav-devices",
+      "to": "pages/devices.html"
+    }
+  ],
+  "hiddenInteractionPlan": [
+    {
+      "target": "projects",
+      "pattern": "project-switch-sheet",
+      "description": "工程切换保留为顶部抽屉式入口，适合现场快速更换当前联调项目。"
+    },
+    {
+      "target": "devices",
+      "pattern": "engine-filter-sheet",
+      "description": "设备列表顶部工程筛选保留为快速上下文切换入口，默认展示全部工程。"
+    },
+    {
+      "target": "devices",
+      "pattern": "status-filter-segment",
+      "description": "在线、离线、故障、全部使用分段筛选，保证设备列表首屏即能聚焦关键设备。"
+    },
+    {
+      "target": "devices",
+      "pattern": "device-card-open",
+      "description": "设备卡片整卡点击进入设备操作页，维持现场调试主入口清晰。"
+    },
+    {
+      "target": "device-operation",
+      "pattern": "back-context-return",
+      "description": "设备操作页返回按钮回到当前工程或当前筛选上下文的设备列表。"
+    }
+  ]
+}

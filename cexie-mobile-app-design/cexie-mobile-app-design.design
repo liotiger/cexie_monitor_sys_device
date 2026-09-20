@@ -1,0 +1,319 @@
+{
+  "data": [
+    {
+      "id": "page-login",
+      "title": "登录",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1783063800000,
+      "canvasData": {
+        "x": 0,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/login.html",
+        "interactions": [
+          {
+            "domId": "login-submit",
+            "targetPageId": "page-dashboard",
+            "transitionLabel": "登录成功"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-dashboard",
+      "title": "首页",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1783063801000,
+      "canvasData": {
+        "x": 309,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/dashboard.html",
+        "interactions": [
+          {
+            "domId": "home-enter-projects",
+            "targetPageId": "page-projects",
+            "transitionLabel": "查看工程"
+          },
+          {
+            "domId": "nav-projects",
+            "targetPageId": "page-projects",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-trends",
+            "targetPageId": "page-trend-analysis",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-reports",
+            "targetPageId": "page-reports",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-profile",
+            "targetPageId": "page-profile",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-projects",
+      "title": "工程",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1783063802000,
+      "canvasData": {
+        "x": 618,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/projects.html",
+        "interactions": [
+          {
+            "domId": "projects-open-detail",
+            "targetPageId": "page-project-detail",
+            "transitionLabel": "查看详情"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-dashboard",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-trends",
+            "targetPageId": "page-trend-analysis",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-reports",
+            "targetPageId": "page-reports",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-profile",
+            "targetPageId": "page-profile",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-project-detail",
+      "title": "工程详情",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1783063803000,
+      "canvasData": {
+        "x": 927,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/project-detail.html",
+        "interactions": [
+          {
+            "domId": "detail-back-projects",
+            "targetPageId": "page-projects",
+            "hideEdge": true,
+            "transitionLabel": "返回工程"
+          },
+          {
+            "domId": "detail-open-hole",
+            "targetPageId": "page-hole-monitor",
+            "transitionLabel": "进入测孔"
+          },
+          {
+            "domId": "detail-open-trends",
+            "targetPageId": "page-trend-analysis",
+            "hideEdge": true,
+            "transitionLabel": "查看趋势"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-hole-monitor",
+      "title": "测孔监测",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1783063804000,
+      "canvasData": {
+        "x": 1236,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/hole-monitor.html",
+        "interactions": [
+          {
+            "domId": "hole-back-detail",
+            "targetPageId": "page-project-detail",
+            "hideEdge": true,
+            "transitionLabel": "返回详情"
+          },
+          {
+            "domId": "hole-open-trend",
+            "targetPageId": "page-trend-analysis",
+            "transitionLabel": "查看趋势"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-trend-analysis",
+      "title": "趋势分析",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1783063805000,
+      "canvasData": {
+        "x": 1545,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/trend-analysis.html",
+        "interactions": [
+          {
+            "domId": "trend-open-reports",
+            "targetPageId": "page-reports",
+            "transitionLabel": "查看报表"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-dashboard",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-projects",
+            "targetPageId": "page-projects",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-reports",
+            "targetPageId": "page-reports",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-profile",
+            "targetPageId": "page-profile",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-reports",
+      "title": "报表中心",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1783063806000,
+      "canvasData": {
+        "x": 1854,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/reports.html",
+        "interactions": [
+          {
+            "domId": "reports-open-profile",
+            "targetPageId": "page-profile",
+            "transitionLabel": "进入我的"
+          },
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-dashboard",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-projects",
+            "targetPageId": "page-projects",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-trends",
+            "targetPageId": "page-trend-analysis",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-profile",
+            "targetPageId": "page-profile",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          }
+        ]
+      }
+    },
+    {
+      "id": "page-profile",
+      "title": "我的",
+      "type": "page",
+      "version": 1,
+      "createdAt": 1783063807000,
+      "canvasData": {
+        "x": 2163,
+        "y": 0,
+        "group": 0
+      },
+      "devMetadata": {
+        "htmlSrc": "pages/profile.html",
+        "interactions": [
+          {
+            "domId": "nav-home",
+            "targetPageId": "page-dashboard",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-projects",
+            "targetPageId": "page-projects",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-trends",
+            "targetPageId": "page-trend-analysis",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          },
+          {
+            "domId": "nav-reports",
+            "targetPageId": "page-reports",
+            "hideEdge": true,
+            "transitionLabel": "底部导航"
+          }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "autoLayout": true,
+    "deviceType": "mobile",
+    "projectName": "测斜监测移动端",
+    "designLibrary": null
+  }
+}

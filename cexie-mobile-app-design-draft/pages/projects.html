@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工程</title>
+    <style id="theme-vars">
+:root {
+  --cexie-font-sans: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --cexie-font-mono: "SFMono-Regular", "JetBrains Mono", Consolas, monospace;
+  --cexie-background: #f3f6fa;
+  --cexie-foreground: #1a2430;
+  --cexie-muted: #eef3f8;
+  --cexie-muted-foreground: #667589;
+  --cexie-card: #ffffff;
+  --cexie-card-foreground: #1a2430;
+  --cexie-border: #d6e0ea;
+  --cexie-divider: #e7edf3;
+  --cexie-primary: #2f5e8a;
+  --cexie-primary-strong: #244767;
+  --cexie-primary-soft: #dce8f3;
+  --cexie-primary-surface: #edf4fa;
+  --cexie-primary-foreground: #ffffff;
+  --cexie-success: #2f7a61;
+  --cexie-success-surface: #e7f4ee;
+  --cexie-warning: #a46c25;
+  --cexie-warning-surface: #fbf2e5;
+  --cexie-error: #b25454;
+  --cexie-error-surface: #faecec;
+  --cexie-info: #406f9a;
+  --cexie-info-surface: #eaf1f8;
+  --cexie-radius-xs: 6px;
+  --cexie-radius-sm: 8px;
+  --cexie-radius-md: 12px;
+  --cexie-radius-lg: 16px;
+  --cexie-shadow-1: 0 4px 12px rgba(20, 36, 54, 0.04);
+  --cexie-shadow-2: 0 10px 24px rgba(20, 36, 54, 0.05);
+}
+.dark {
+  --cexie-background: #111922;
+  --cexie-foreground: #e7edf4;
+  --cexie-muted: #18232f;
+  --cexie-muted-foreground: #93a2b4;
+  --cexie-card: #16212c;
+  --cexie-card-foreground: #e7edf4;
+  --cexie-border: #273747;
+  --cexie-divider: #223241;
+  --cexie-primary: #5f88b1;
+  --cexie-primary-strong: #7a9fc3;
+  --cexie-primary-soft: #213549;
+  --cexie-primary-surface: #182837;
+  --cexie-primary-foreground: #f8fbff;
+  --cexie-success: #5ca58c;
+  --cexie-success-surface: #173126;
+  --cexie-warning: #cea15e;
+  --cexie-warning-surface: #392c18;
+  --cexie-error: #d68888;
+  --cexie-error-surface: #351f1f;
+  --cexie-info: #7aa8cf;
+  --cexie-info-surface: #1b2d3f;
+}
+body { font-family: var(--cexie-font-sans); color: var(--cexie-foreground); background: var(--cexie-background); }
+.cexie-h1 { font-size: 24px; line-height: 1.24; font-weight: 700; letter-spacing: -0.02em; }
+.cexie-h2 { font-size: 18px; line-height: 1.35; font-weight: 700; }
+.cexie-h3 { font-size: 16px; line-height: 1.4; font-weight: 600; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--cexie-background);
+    --color-foreground: var(--cexie-foreground);
+    --color-card: var(--cexie-card);
+    --color-card-foreground: var(--cexie-card-foreground);
+    --color-primary: var(--cexie-primary);
+    --color-primary-foreground: var(--cexie-primary-foreground);
+    --color-muted: var(--cexie-muted);
+    --color-muted-foreground: var(--cexie-muted-foreground);
+    --color-border: var(--cexie-border);
+  }
+  @layer base {
+    body { background: var(--cexie-background); color: var(--cexie-foreground); }
+  }
+    </style>
+</head>
+<body class="min-h-screen bg-[var(--cexie-background)] text-[var(--cexie-foreground)]">
+  <main class="mx-auto w-full max-w-md px-4 pb-24 pt-4 sm:max-w-lg">
+    <header class="sticky top-0 z-20 -mx-4 border-b border-[var(--cexie-border)] bg-[var(--cexie-background)]/96 px-4 py-3 backdrop-blur">
+      <div class="flex items-center justify-between gap-3">
+        <div class="min-w-0">
+          <p class="truncate text-[12px] text-[var(--cexie-muted-foreground)]">工程入口</p>
+          <h1 class="cexie-h2 truncate">现场调试工程</h1>
+        </div>
+        <span class="inline-flex h-8 items-center rounded-[var(--cexie-radius-xs)] bg-[var(--cexie-primary-soft)] px-3 text-[12px] font-semibold text-[var(--cexie-primary)]">调试模式</span>
+      </div>
+      <div class="mt-3 grid grid-cols-[1fr_auto] gap-2">
+        <button type="button" class="inline-flex h-10 items-center justify-between rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] px-3 text-left">
+          <span class="truncate text-[13px] font-medium">当前工程：南城深基坑三期监测</span>
+          <i data-lucide="chevrons-up-down" class="h-4 w-4 shrink-0 text-[var(--cexie-muted-foreground)]"></i>
+        </button>
+        <button type="button" class="inline-flex h-10 items-center justify-center rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] px-3 text-[13px] font-medium text-[var(--cexie-primary)]">
+          <i data-lucide="scan-search" class="mr-1.5 h-4 w-4"></i>
+          搜索
+        </button>
+      </div>
+    </header>
+
+    <section class="mt-4 rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-4 shadow-[var(--cexie-shadow-1)]">
+      <div class="grid grid-cols-3 gap-3">
+        <div class="min-w-0 border-r border-[var(--cexie-divider)] pr-2">
+          <p class="text-[12px] text-[var(--cexie-muted-foreground)]">在线上位机</p>
+          <p class="mt-1 text-[22px] font-semibold text-[var(--cexie-primary)]">09</p>
+        </div>
+        <div class="min-w-0 border-r border-[var(--cexie-divider)] px-2">
+          <p class="text-[12px] text-[var(--cexie-muted-foreground)]">最近回执</p>
+          <p class="mt-1 text-[22px] font-semibold">11:23</p>
+        </div>
+        <div class="min-w-0 pl-2">
+          <p class="text-[12px] text-[var(--cexie-muted-foreground)]">待调试设备</p>
+          <p class="mt-1 text-[22px] font-semibold text-[var(--cexie-warning)]">04</p>
+        </div>
+      </div>
+      <p class="mt-3 text-[12px] leading-5 text-[var(--cexie-muted-foreground)]">工程页作为入口，按现场调试优先级快速进入当前工程下的设备列表。</p>
+    </section>
+
+    <section class="mt-4 space-y-4">
+      <article class="rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-4 shadow-[var(--cexie-shadow-1)]">
+        <div class="flex items-start justify-between gap-3">
+          <div class="min-w-0">
+            <p class="truncate text-[12px] font-medium text-[var(--cexie-muted-foreground)]">NSDK-2026-018</p>
+            <h2 class="mt-1 text-[17px] font-semibold">南城深基坑三期监测</h2>
+            <p class="mt-1 text-[12px] text-[var(--cexie-muted-foreground)]">负责人：张工</p>
+          </div>
+          <span class="inline-flex h-7 items-center rounded-[var(--cexie-radius-xs)] bg-[var(--cexie-success-surface)] px-2.5 text-[12px] font-semibold text-[var(--cexie-success)]">联调中</span>
+        </div>
+        <div class="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-[var(--cexie-divider)] pt-4">
+          <div class="min-w-0">
+            <p class="text-[12px] text-[var(--cexie-muted-foreground)]">在线上位机</p>
+            <p class="mt-1 text-[18px] font-semibold">6 / 7 台</p>
+          </div>
+          <div class="min-w-0">
+            <p class="text-[12px] text-[var(--cexie-muted-foreground)]">异常设备</p>
+            <p class="mt-1 text-[18px] font-semibold text-[var(--cexie-warning)]">2 台</p>
+          </div>
+          <div class="min-w-0">
+            <p class="text-[12px] text-[var(--cexie-muted-foreground)]">最近回执</p>
+            <p class="mt-1 text-[18px] font-semibold">11:23:18</p>
+          </div>
+          <div class="min-w-0">
+            <p class="text-[12px] text-[var(--cexie-muted-foreground)]">当前负责人</p>
+            <p class="mt-1 text-[18px] font-semibold">张工</p>
+          </div>
+        </div>
+        <div class="mt-4 flex items-center justify-between gap-3 border-t border-[var(--cexie-divider)] pt-4">
+          <p class="min-w-0 text-[12px] leading-5 text-[var(--cexie-muted-foreground)]">最近异常：CX-GW-07 时钟偏移 41 秒，建议进入设备列表继续处理。</p>
+          <button id="project-open-devices" data-dom-id="project-open-devices" type="button" class="inline-flex h-10 shrink-0 items-center justify-center rounded-[var(--cexie-radius-sm)] bg-[var(--cexie-primary)] px-4 text-[13px] font-semibold text-[var(--cexie-primary-foreground)]">
+            进入设备调试
+          </button>
+        </div>
+      </article>
+
+      <article class="rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-4 shadow-[var(--cexie-shadow-1)]">
+        <div class="flex items-start justify-between gap-3">
+          <div class="min-w-0">
+            <p class="truncate text-[12px] font-medium text-[var(--cexie-muted-foreground)]">BPSY-2026-009</p>
+            <h2 class="mt-1 text-[17px] font-semibold">北坡边坡稳定性监测</h2>
+            <p class="mt-1 text-[12px] text-[var(--cexie-muted-foreground)]">负责人：周工</p>
+          </div>
+          <span class="inline-flex h-7 items-center rounded-[var(--cexie-radius-xs)] bg-[var(--cexie-warning-surface)] px-2.5 text-[12px] font-semibold text-[var(--cexie-warning)]">待联调</span>
+        </div>
+        <div class="mt-4 grid grid-cols-2 gap-x-4 gap-y-3 border-t border-[var(--cexie-divider)] pt-4">
+          <div class="min-w-0"><p class="text-[12px] text-[var(--cexie-muted-foreground)]">在线上位机</p><p class="mt-1 text-[18px] font-semibold">3 / 5 台</p></div>
+          <div class="min-w-0"><p class="text-[12px] text-[var(--cexie-muted-foreground)]">异常设备</p><p class="mt-1 text-[18px] font-semibold text-[var(--cexie-warning)]">4 台</p></div>
+          <div class="min-w-0"><p class="text-[12px] text-[var(--cexie-muted-foreground)]">最近回执</p><p class="mt-1 text-[18px] font-semibold">10:47:05</p></div>
+          <div class="min-w-0"><p class="text-[12px] text-[var(--cexie-muted-foreground)]">当前负责人</p><p class="mt-1 text-[18px] font-semibold">周工</p></div>
+        </div>
+        <div class="mt-4 flex items-center justify-between gap-3 border-t border-[var(--cexie-divider)] pt-4">
+          <p class="min-w-0 text-[12px] leading-5 text-[var(--cexie-muted-foreground)]">用于快速切换现场待处理工程。</p>
+          <button type="button" class="inline-flex h-10 shrink-0 items-center justify-center rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] px-4 text-[13px] font-semibold text-[var(--cexie-primary)]">
+            进入设备调试
+          </button>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <nav class="fixed bottom-0 left-0 right-0 border-t border-[var(--cexie-border)] bg-[var(--cexie-card)]/98 backdrop-blur">
+    <div class="mx-auto grid max-w-md grid-cols-3 px-3 py-2 sm:max-w-lg">
+      <button class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-primary)]">
+        <i data-lucide="folder-kanban" class="h-4 w-4"></i>
+        <span class="text-[11px] font-medium">工程</span>
+      </button>
+      <button id="nav-devices" data-dom-id="nav-devices" class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-muted-foreground)]">
+        <i data-lucide="cpu" class="h-4 w-4"></i>
+        <span class="text-[11px] font-medium">设备</span>
+      </button>
+      <button id="nav-profile" data-dom-id="nav-profile" class="flex flex-col items-center gap-1 rounded-[var(--cexie-radius-xs)] py-1 text-[var(--cexie-muted-foreground)]">
+        <i data-lucide="user-round" class="h-4 w-4"></i>
+        <span class="text-[11px] font-medium">我的</span>
+      </button>
+    </div>
+  </nav>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

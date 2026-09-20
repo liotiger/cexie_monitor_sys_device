@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="light" lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <style id="theme-vars">
+:root {
+  --cexie-font-sans: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+  --cexie-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+
+  --cexie-background: #f4f7fb;
+  --cexie-foreground: #1f2937;
+  --cexie-muted: #eef3f8;
+  --cexie-muted-foreground: #66758b;
+  --cexie-card: #ffffff;
+  --cexie-card-foreground: #1f2937;
+  --cexie-border: #d7e0ea;
+  --cexie-divider: #e6edf4;
+
+  --cexie-primary: #2d5f93;
+  --cexie-primary-strong: #21496f;
+  --cexie-primary-soft: #dde8f3;
+  --cexie-primary-surface: #edf4fb;
+  --cexie-primary-foreground: #ffffff;
+
+  --cexie-success: #2f7c63;
+  --cexie-success-surface: #e7f4ef;
+  --cexie-warning: #a56b1f;
+  --cexie-warning-surface: #fbf2e6;
+  --cexie-error: #b14f4f;
+  --cexie-error-surface: #faecec;
+  --cexie-info: #3b6f98;
+  --cexie-info-surface: #eaf2f8;
+
+  --cexie-radius-xs: 6px;
+  --cexie-radius-sm: 8px;
+  --cexie-radius-md: 12px;
+  --cexie-radius-lg: 16px;
+
+  --cexie-shadow-1: 0 4px 12px rgba(18, 37, 56, 0.04);
+  --cexie-shadow-2: 0 10px 24px rgba(18, 37, 56, 0.05);
+
+  --cexie-spacing-1: 4px;
+  --cexie-spacing-2: 8px;
+  --cexie-spacing-3: 12px;
+  --cexie-spacing-4: 16px;
+  --cexie-spacing-5: 20px;
+  --cexie-spacing-6: 24px;
+}
+
+.dark {
+  --cexie-background: #0f1722;
+  --cexie-foreground: #e8eef5;
+  --cexie-muted: #172230;
+  --cexie-muted-foreground: #93a4b8;
+  --cexie-card: #16212d;
+  --cexie-card-foreground: #e8eef5;
+  --cexie-border: #243444;
+  --cexie-divider: #223241;
+
+  --cexie-primary: #5b87b5;
+  --cexie-primary-strong: #7da1c6;
+  --cexie-primary-soft: #203549;
+  --cexie-primary-surface: #172737;
+  --cexie-primary-foreground: #f7fbff;
+
+  --cexie-success: #59a68a;
+  --cexie-success-surface: #173127;
+  --cexie-warning: #d1a05c;
+  --cexie-warning-surface: #382b18;
+  --cexie-error: #d68484;
+  --cexie-error-surface: #351e1e;
+  --cexie-info: #79a7cf;
+  --cexie-info-surface: #1a2d3f;
+}
+
+body {
+  font-family: var(--cexie-font-sans);
+  color: var(--cexie-foreground);
+  background: var(--cexie-background);
+}
+
+.cexie-display {
+  font-family: var(--cexie-font-sans);
+  font-size: clamp(28px, 7vw, 34px);
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.cexie-h1 {
+  font-family: var(--cexie-font-sans);
+  font-size: 24px;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.cexie-h2 {
+  font-family: var(--cexie-font-sans);
+  font-size: 18px;
+  line-height: 1.35;
+  font-weight: 700;
+}
+
+.cexie-h3 {
+  font-family: var(--cexie-font-sans);
+  font-size: 16px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.cexie-body {
+  font-family: var(--cexie-font-sans);
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.cexie-caption {
+  font-family: var(--cexie-font-sans);
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.cexie-metric {
+  font-family: var(--cexie-font-sans);
+  font-size: clamp(24px, 6vw, 30px);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.3.1/dist/index.global.js"></script>
+    <script src="https://unpkg.com/lucide@1.8.0/dist/umd/lucide.min.js"></script>
+    <style type="text/tailwindcss">
+  @theme inline {
+    --color-background: var(--cexie-background);
+    --color-foreground: var(--cexie-foreground);
+    --color-card: var(--cexie-card);
+    --color-card-foreground: var(--cexie-card-foreground);
+    --color-primary: var(--cexie-primary);
+    --color-primary-foreground: var(--cexie-primary-foreground);
+    --color-muted: var(--cexie-muted);
+    --color-muted-foreground: var(--cexie-muted-foreground);
+    --color-border: var(--cexie-border);
+  }
+  @layer base {
+    body { background: var(--cexie-background); color: var(--cexie-foreground); }
+    td, th { @apply break-words; word-break: break-all; word-break: auto-phrase; }
+    th { @apply whitespace-nowrap; }
+  }
+    </style>
+    <style>
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      [data-icon] {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+        background-color: currentColor;
+      }
+    </style>
+</head>
+<body class="min-h-screen bg-[var(--cexie-background)] text-[var(--cexie-foreground)]">
+  <main class="mx-auto flex min-h-screen w-full max-w-md flex-col justify-between px-5 py-6 sm:max-w-lg">
+    <section class="rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[linear-gradient(180deg,var(--cexie-primary-surface)_0%,var(--cexie-card)_100%)] p-5 shadow-[var(--cexie-shadow-2)]">
+      <div class="inline-flex h-10 w-10 items-center justify-center rounded-[var(--cexie-radius-md)] bg-[var(--cexie-primary)] text-[var(--cexie-primary-foreground)]">
+        <i data-lucide="tower-control" class="h-5 w-5"></i>
+      </div>
+      <p class="mt-4 cexie-caption text-[var(--cexie-primary)]">工程监测 · 客户端入口</p>
+      <h1 class="cexie-display mt-2" style="text-wrap: balance; word-break: keep-all; overflow-wrap: break-word;">测斜监测移动端</h1>
+      <p class="mt-3 text-[14px] leading-6 text-[var(--cexie-muted-foreground)]">
+        面向深基坑与边坡监测项目的移动工作台，聚焦现场巡检、项目状态、测孔趋势与报表闭环。
+      </p>
+
+      <div class="mt-5 rounded-[var(--cexie-radius-md)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-4">
+        <div class="flex items-start gap-3">
+          <i data-lucide="server-cog" class="mt-0.5 h-4 w-4 shrink-0 text-[var(--cexie-primary)]"></i>
+          <div class="min-w-0">
+            <p class="text-[14px] font-semibold">当前环境</p>
+            <p class="mt-1 truncate text-[12px] text-[var(--cexie-muted-foreground)]">生产联调环境 / client-api.cexie-monitor.local</p>
+            <p class="mt-2 line-clamp-2 text-[12px] leading-5 text-[var(--cexie-muted-foreground)]">
+              建议在稳定网络下使用。现场弱网模式将优先展示最近一次同步的数据摘要。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mt-5 rounded-[var(--cexie-radius-lg)] border border-[var(--cexie-border)] bg-[var(--cexie-card)] p-5 shadow-[var(--cexie-shadow-1)]">
+      <div class="space-y-4">
+        <label class="block">
+          <span class="mb-2 block text-[13px] font-medium text-[var(--cexie-muted-foreground)]">账号</span>
+          <input type="text" value="project.mobile" class="h-12 w-full rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-background)] px-4 text-[15px] outline-none" placeholder="请输入账号">
+        </label>
+        <label class="block">
+          <span class="mb-2 block text-[13px] font-medium text-[var(--cexie-muted-foreground)]">密码</span>
+          <input type="password" value="••••••••" class="h-12 w-full rounded-[var(--cexie-radius-sm)] border border-[var(--cexie-border)] bg-[var(--cexie-background)] px-4 text-[15px] outline-none" placeholder="请输入密码">
+        </label>
+        <div class="flex items-center justify-between gap-3 text-[12px] text-[var(--cexie-muted-foreground)]">
+          <label class="inline-flex items-center gap-2">
+            <input type="checkbox" checked class="h-4 w-4 rounded border-[var(--cexie-border)]">
+            <span>记住最近登录工程</span>
+          </label>
+          <button type="button" class="whitespace-nowrap font-medium text-[var(--cexie-primary)]">切换接口</button>
+        </div>
+        <button id="login-submit" data-dom-id="login-submit" type="button" class="inline-flex h-12 w-full items-center justify-center rounded-[var(--cexie-radius-sm)] bg-[var(--cexie-primary)] text-[15px] font-semibold text-[var(--cexie-primary-foreground)] shadow-[var(--cexie-shadow-1)]">
+          登录系统
+        </button>
+      </div>
+
+      <div class="mt-5 border-t border-[var(--cexie-divider)] pt-4">
+        <div class="flex items-start gap-3">
+          <i data-lucide="badge-check" class="mt-0.5 h-4 w-4 shrink-0 text-[var(--cexie-success)]"></i>
+          <div class="min-w-0">
+            <p class="text-[14px] font-semibold">演示账号</p>
+            <p class="mt-1 truncate text-[12px] text-[var(--cexie-muted-foreground)]">项目经理：pm_demo / 监测员：field_demo</p>
+            <p class="mt-1 line-clamp-2 text-[12px] leading-5 text-[var(--cexie-muted-foreground)]">
+              演示环境仅用于流程预览，不会触发真实任务下发与报表生成。
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="mt-6 pb-2 text-center text-[12px] leading-5 text-[var(--cexie-muted-foreground)]">
+      数据口径以项目最新同步时间为准，异常告警请联系项目管理员复核。
+    </footer>
+  </main>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

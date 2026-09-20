@@ -1,0 +1,21 @@
+{
+  "name": "测斜监测移动端",
+  "appid": "__UNI__CEXIE_MONITOR_MOBILE",
+  "description": "",
+  "versionName": "1.0.0",
+  "versionCode": "100",
+  "transformPx": false,
+  "h5": {
+    "title": "测斜监测移动端",
+    "router": {
+      "mode": "hash",
+      "base": "./"
+    }
+  },
+  "mp-weixin": {
+    "appid": "",
+    "setting": {
+      "urlCheck": false
+    }
+  }
+}

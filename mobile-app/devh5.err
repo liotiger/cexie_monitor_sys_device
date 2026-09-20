@@ -1,0 +1,5 @@
+​
+  `@babel/polyfill` is deprecated. Please, use required parts of `core-js`
+  and `regenerator-runtime/runtime` separately​
+[BABEL] Note: The code generator has deoptimised the styling of D:\project\2026\cexie-monitor-sys\mobile-app\node_modules\@dcloudio\uni-h5\dist\index.umd.min.js as it exceeds the max of 500KB.
+^C
